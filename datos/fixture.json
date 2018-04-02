@@ -1,0 +1,34 @@
+{
+  "grupoA": {
+    "equipos":
+      [{"nombre": "Rusia"},{"nombre": "Arabia Saudita"},{"nombre": "Egipto"},{"nombre": "Uruguay"}]
+  },
+  "grupoB": {
+    "equipos":
+      [{"nombre": "Portugal"},{"nombre": "España"},{"nombre": "Marruecos"},{"nombre": "Irán"}]
+  },
+  "grupoC": {
+    "equipos":
+      [{"nombre": "Francia"},{"nombre": "Australia"},{"nombre": "Perú"},{"nombre": "Dinamarca"}]
+  },
+  "grupoD": {
+    "equipos":
+      [{"nombre": "Argentina"},{"nombre": "Islandia"},{"nombre": "Croacia"},{"nombre": "Nigeria"}]
+  },
+  "grupoE": {
+    "equipos":
+      [{"nombre": "Brasil"},{"nombre": "Suiza"},{"nombre": "Costa Rica"},{"nombre": "Serbia"}]
+  },
+  "grupoF": {
+    "equipos":
+      [{"nombre": "Alemania"},{"nombre": "México"},{"nombre": "Suecia"},{"nombre": "República de Corea"}]
+  },
+  "grupoG": {
+    "equipos":
+      [{"nombre": "Bélgica"},{"nombre": "Panamá"},{"nombre": "Túnez"},{"nombre": "Inglaterra"}]
+  },
+  "grupoH": {
+    "equipos":
+      [{"nombre": "Polonia"},{"nombre": "Senegal"},{"nombre": "Colombia"},{"nombre": "Japón"}]
+  }
+}
