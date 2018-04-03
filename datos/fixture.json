@@ -1,11 +1,53 @@
 {
   "grupoA": {
     "equipos":
-      [{"nombre": "Rusia"},{"nombre": "Arabia Saudita"},{"nombre": "Egipto"},{"nombre": "Uruguay"}]
+      [{"nombre": "Rusia"},{"nombre": "Arabia Saudita"},{"nombre": "Egipto"},{"nombre": "Uruguay"}],
+    "fecha1":{
+      "partidos":
+        [
+          {"equipo_1": "Rusia","equipo_2": "Arabia Saudita","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"14/06", "hora":"12:00"},
+          {"equipo_1": "Egipto","equipo_2": "Uruguay","estadio":"Ekaterimburgo Arena", "ciudad":"Ekaterimburgo","fecha":"15/06", "hora":"09:00"}
+        ]
+    },
+    "fecha2":{
+      "partidos":
+        [
+          {"equipo_1": "Rusia","equipo_2": "Egipto","estadio":"Zenit Arena", "ciudad":"San Petersburgo","fecha":"19/06", "hora":"15:00"},
+          {"equipo_1": "Uruguay","equipo_2": "Arabia Saudita","estadio":"Rostov Arena", "ciudad":"Rostov del Don","fecha":"20/06", "hora":"12:00"}
+        ]
+    },
+    "fecha3":{
+      "partidos":
+        [
+          {"equipo_1": "Uruguay","equipo_2": "Rusia","estadio":"Samara Arena", "ciudad":"Samara","fecha":"25/06", "hora":"11:00"},
+          {"equipo_1": "Arabia Saudita","equipo_2": "Egipto","estadio":"Volgogrado Arena", "ciudad":"Volgogrado","fecha":"25/06", "hora":"11:00"}
+        ]
+    }
   },
   "grupoB": {
     "equipos":
-      [{"nombre": "Portugal"},{"nombre": "España"},{"nombre": "Marruecos"},{"nombre": "Irán"}]
+      [{"nombre": "Portugal"},{"nombre": "España"},{"nombre": "Marruecos"},{"nombre": "Irán"}],
+    "fecha1":{
+      "partidos":
+        [
+          {"equipo_1": "Marruecos","equipo_2": "Irán","estadio":"Zenit Arena", "ciudad":"San Petersburgo","fecha":"15/06", "hora":"12:00"},
+          {"equipo_1": "Portugal","equipo_2": "España","estadio":"Estadio Fisht", "ciudad":"Sochi","fecha":"15/06", "hora":"15:00"}
+        ]
+    },
+    "fecha2":{
+      "partidos":
+        [
+          {"equipo_1": "Portugal","equipo_2": "Marruecos","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"20/06", "hora":"09:00"},
+          {"equipo_1": "Irán","equipo_2": "España","estadio":"Kazán Arena", "ciudad":"Kazán","fecha":"20/06", "hora":"15:00"}
+        ]
+    },
+    "fecha3":{
+      "partidos":
+        [
+          {"equipo_1": "Irán","equipo_2": "Portugal","estadio":"Mordovia Arena", "ciudad":"Saransk","fecha":"25/06", "hora":"15:00"},
+          {"equipo_1": "España","equipo_2": "Marruecos","estadio":"Arena Baltika", "ciudad":"Kaliningrado","fecha":"25/06", "hora":"15:00"}
+        ]
+    }
   },
   "grupoC": {
     "equipos":

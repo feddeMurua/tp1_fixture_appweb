@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="estaticos/css/bootstrap.css"/>
+        <script type="text/javascript" src="estaticos/js/jquery.js"></script>
         <title>App-Web 2018</title>
     </head>
     <body>
@@ -9,28 +10,83 @@
       <h1 align="center">Fixture Mundial Rusia-2018</h1>
       <br>
       <div class="row">
-        <div class="col-sm-2 col-md-2 col-lg-1 col-xl-1" style="width: 10%;">
+        <div class="col-sm-2 col-md-2 col-lg-1 col-xl-1">
             <nav class="navbar navbar-light navbar-expand-sm px-0 flex-row flex-nowrap">
                <div class="navbar-collapse collapse" id="navbarGrupos">
                   <div class="nav flex-sm-column flex-row">
                       <a class="nav-item nav-link" href="#">Home</a>
-                      <a href="#" class="nav-item nav-link">Grupo A</a>
-                      <a href="#" class="nav-item nav-link">Grupo B</a>
-                      <a href="#" class="nav-item nav-link">Grupo C</a>
-                      <a href="#" class="nav-item nav-link">Grupo D</a>
-                      <a href="#" class="nav-item nav-link">Grupo E</a>
-                      <a href="#" class="nav-item nav-link">Grupo F</a>
-                      <a href="#" class="nav-item nav-link">Grupo G</a>
-                      <a href="#" class="nav-item nav-link">Grupo H</a>
+                      <a href="#" onclick="mostrarGrupo('grupoA')" class="nav-item nav-link">Grupo A</a>
+                      <a href="#" onclick="mostrarGrupo('grupoB')" class="nav-item nav-link">Grupo B</a>
+                      <a href="#" onclick="mostrarGrupo('grupoC')" class="nav-item nav-link">Grupo C</a>
+                      <a href="#" onclick="mostrarGrupo('grupoD')" class="nav-item nav-link">Grupo D</a>
+                      <a href="#" onclick="mostrarGrupo('grupoE')" class="nav-item nav-link">Grupo E</a>
+                      <a href="#" onclick="mostrarGrupo('grupoF')" class="nav-item nav-link">Grupo F</a>
+                      <a href="#" onclick="mostrarGrupo('grupoG')" class="nav-item nav-link">Grupo G</a>
+                      <a href="#" onclick="mostrarGrupo('grupoH')" class="nav-item nav-link">Grupo H</a>
                   </div>
               </div>
             </nav>
         </div>
 
         <div class="card" style="width: 90%;">
-          <div class="card-body">Basic card</div>
-        </div>
 
+          <form action="demo/request-variable.php" method="post">
+            <label id="partido_1">FECHA 1</label>
+            <br>
+            <label id="equipo_1">--------</label>
+            <input style="text-align:center;" type="text" name="resul_1"/>
+            <input style="text-align:center;" type="text" name="resul_2"/>
+            <label id="equipo_2">--------</label>
+            <br>
+            <label id="fecha_1">--------</label> |
+            <label id="estadio_1">--------</label>  |
+            <label id="ciudad_1">--------</label>  |
+            <label id="hora_1">--------</label>
+            <br>
+            <label id="equipo_3">--------</label>
+            <input style="text-align:center;" type="text" name="resul_3"/>
+            <input style="text-align:center;" type="text" name="resul_4"/>
+            <label id="equipo_4">--------</label>
+            <br>
+            <label id="fecha_2">--------</label> |
+            <label id="estadio_2">--------</label>  |
+            <label id="ciudad_2">--------</label>  |
+            <label id="hora_2">--------</label>
+            <br>
+            <input type="submit" name="submit"/>
+          </form>
+
+          <script type="text/javascript">
+
+            function mostrarGrupo(nombre_grupo) {
+
+              $.getJSON('datos/fixture.json', function (data) {
+
+                // begin accessing JSON data here
+
+                $("#equipo_1").text(data[nombre_grupo]["fecha1"]["partidos"][0]["equipo_1"]);
+                $("#equipo_2").text(data[nombre_grupo]["fecha1"]["partidos"][0]["equipo_2"]);
+
+                $("#fecha_1").text(data[nombre_grupo]["fecha1"]["partidos"][0]["fecha"]);
+                $("#estadio_1").text(data[nombre_grupo]["fecha1"]["partidos"][0]["estadio"]);
+                $("#ciudad_1").text(data[nombre_grupo]["fecha1"]["partidos"][0]["ciudad"]);
+                $("#hora_1").text(data[nombre_grupo]["fecha1"]["partidos"][0]["hora"]);
+
+                $("#equipo_3").text(data[nombre_grupo]["fecha1"]["partidos"][1]["equipo_1"]);
+                $("#equipo_4").text(data[nombre_grupo]["fecha1"]["partidos"][1]["equipo_2"]);          
+
+                $("#fecha_2").text(data[nombre_grupo]["fecha1"]["partidos"][1]["fecha"]);
+                $("#estadio_2").text(data[nombre_grupo]["fecha1"]["partidos"][1]["estadio"]);
+                $("#ciudad_2").text(data[nombre_grupo]["fecha1"]["partidos"][1]["ciudad"]);
+                $("#hora_2").text(data[nombre_grupo]["fecha1"]["partidos"][1]["hora"]);
+
+              });
+
+            }
+
+          </script>
+
+        </div>
       </div>
 
     </body>
