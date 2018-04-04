@@ -1,0 +1,36 @@
+<html>
+
+  <head>
+
+    <script type="text/javascript" src="../estaticos/js/jquery.js"></script>
+    <script language="javascript">
+
+      // This just displays the first parameter passed to it
+      // in an alert.
+      function show(json) {
+        console.log(json);
+      }
+
+      //fase de grupos
+      function init() {
+          $.getJSON(
+            "server.php", // The server URL
+            { fase: "grupos" }, // Data you want to pass to the server.
+            show // The function to call on completion.
+          );
+      }
+
+      // We'll run the AJAX query when the page loads.
+      window.onload=init;
+
+    </script>
+
+  </head>
+
+  <body>
+
+    JSON Test Page.
+
+  </body>
+
+</html>

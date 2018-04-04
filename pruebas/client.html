@@ -1,0 +1,36 @@
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="../estaticos/css/bootstrap.css"/>
+    <title>App-Web 2018</title>
+    <script type="text/javascript" src="../estaticos/js/jquery.js"></script>
+    <script language="javascript">
+
+      //Muestro por consola el json recibido
+      function datos(json) {
+        console.log(json);
+      }
+
+      //fase de grupos
+      function init() {
+          $.getJSON(
+            "server.php", // Server URL
+            { fase: "grupos" }, // Dato que se envia al servidor
+            datos
+          );
+      }
+
+      // We'll run the AJAX query when the page loads.
+      window.onload=init;
+
+    </script>
+
+  </head>
+
+  <body>
+
+    JSON Test Page.
+
+  </body>
+
+</html>

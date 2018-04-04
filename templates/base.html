@@ -30,7 +30,7 @@
 
         <div class="card" style="width: 90%;">
 
-          <form action="demo/request-variable.php" method="post">
+          <form action="fuentes/request-variable.php" method="post">
             <label id="partido_1">FECHA 1</label>
             <br>
             <label id="equipo_1">--------</label>
@@ -73,7 +73,7 @@
                 $("#hora_1").text(data[nombre_grupo]["fecha1"]["partidos"][0]["hora"]);
 
                 $("#equipo_3").text(data[nombre_grupo]["fecha1"]["partidos"][1]["equipo_1"]);
-                $("#equipo_4").text(data[nombre_grupo]["fecha1"]["partidos"][1]["equipo_2"]);          
+                $("#equipo_4").text(data[nombre_grupo]["fecha1"]["partidos"][1]["equipo_2"]);
 
                 $("#fecha_2").text(data[nombre_grupo]["fecha1"]["partidos"][1]["fecha"]);
                 $("#estadio_2").text(data[nombre_grupo]["fecha1"]["partidos"][1]["estadio"]);

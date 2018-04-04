@@ -1,5 +1,3 @@
 <?php
-
-include('templates/base.html');
-
+  include('templates/base.html');
 ?>
