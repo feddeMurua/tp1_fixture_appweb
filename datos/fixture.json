@@ -5,7 +5,7 @@
     "fecha1":{
       "partidos":
         [
-          {"equipo_1": "Rusia","equipo_2": "Arabia Saudita","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"14/06", "hora":"12:00"},
+          {"equipo_1": "Rusia","equipo_2": "A. Saudita","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"14/06", "hora":"12:00"},
           {"equipo_1": "Egipto","equipo_2": "Uruguay","estadio":"Ekaterimburgo Arena", "ciudad":"Ekaterimburgo","fecha":"15/06", "hora":"09:00"}
         ]
     },
@@ -13,7 +13,7 @@
       "partidos":
         [
           {"equipo_1": "Rusia","equipo_2": "Egipto","estadio":"Zenit Arena", "ciudad":"San Petersburgo","fecha":"19/06", "hora":"15:00"},
-          {"equipo_1": "Uruguay","equipo_2": "Arabia Saudita","estadio":"Rostov Arena", "ciudad":"Rostov del Don","fecha":"20/06", "hora":"12:00"}
+          {"equipo_1": "Uruguay","equipo_2": "A. Saudita","estadio":"Rostov Arena", "ciudad":"Rostov del Don","fecha":"20/06", "hora":"12:00"}
         ]
     },
     "fecha3":{
