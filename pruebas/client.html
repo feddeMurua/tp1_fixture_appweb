@@ -6,22 +6,12 @@
     <script type="text/javascript" src="../estaticos/js/jquery.js"></script>
     <script language="javascript">
 
+      function calcular_puntos(dict,json,grupo, fecha, nro_partido) {
 
-      function fase_octavos() {
+        $.each(json[grupo][fecha]["partidos"], function(i, f) {
 
-        //Se carga el archivo
-        json = JSON.parse(localStorage['json']);
-
-        var dict = {};
-
-        $.each(json["grupoA"]["equipos"], function(i, f) {
-          dict[f.nombre] = 0;
-        });
-
-        $.each(json["grupoA"]["fecha1"]["partidos"], function(i, f) {
-
-          var goles_eq_1 = document.getElementById(f.equipo_1+"_#partido_1_ga").value;
-          var goles_eq_2 = document.getElementById(f.equipo_2+"_#partido_1_ga").value;
+          var goles_eq_1 = document.getElementById(f.equipo_1+nro_partido).value;
+          var goles_eq_2 = document.getElementById(f.equipo_2+nro_partido).value;
 
           if (goles_eq_1 > goles_eq_2){
             var value = dict[f.equipo_1];
@@ -40,47 +30,22 @@
 
         });
 
-        $.each(json["grupoA"]["fecha2"]["partidos"], function(i, f) {
+      }
 
-          var goles_eq_1 = document.getElementById(f.equipo_1+"_#partido_2_ga").value;
-          var goles_eq_2 = document.getElementById(f.equipo_2+"_#partido_2_ga").value;
+      function fase_octavos() {
 
-          if (goles_eq_1 > goles_eq_2){
-            var value = dict[f.equipo_1];
-            dict[f.equipo_1] = value + 3;
+        //Se carga el archivo
+        json = JSON.parse(localStorage['json']);
 
-          } else if (goles_eq_1 < goles_eq_2) {
-            var value = dict[f.equipo_2];
-            dict[f.equipo_2] = value + 3;
+        var dict = {};
 
-          } else {
-            var value = dict[f.equipo_1];
-            dict[f.equipo_1] = value + 1;
-            var value = dict[f.equipo_2];
-            dict[f.equipo_2] = value + 1;
-          }
+        $.each(json["grupoA"]["equipos"], function(i, f) {
+          dict[f.nombre] = 0;
         });
 
-        $.each(json["grupoA"]["fecha3"]["partidos"], function(i, f) {
-
-          var goles_eq_1 = document.getElementById(f.equipo_1+"_#partido_3_ga").value;
-          var goles_eq_2 = document.getElementById(f.equipo_2+"_#partido_3_ga").value;
-
-          if (goles_eq_1 > goles_eq_2){
-            var value = dict[f.equipo_1];
-            dict[f.equipo_1] = value + 3;
-
-          } else if (goles_eq_1 < goles_eq_2) {
-            var value = dict[f.equipo_2];
-            dict[f.equipo_2] = value + 3;
-
-          } else {
-            var value = dict[f.equipo_1];
-            dict[f.equipo_1] = value + 1;
-            var value = dict[f.equipo_2];
-            dict[f.equipo_2] = value + 1;
-          }
-        });
+        calcular_puntos(dict, json, "grupoA", "fecha1", "_#partido_1_ga");
+        calcular_puntos(dict, json, "grupoA", "fecha2", "_#partido_2_ga");
+        calcular_puntos(dict, json, "grupoA", "fecha3", "_#partido_3_ga");
 
         console.log(dict);
 
