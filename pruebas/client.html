@@ -6,13 +6,93 @@
     <script type="text/javascript" src="../estaticos/js/jquery.js"></script>
     <script language="javascript">
 
-      function recorrer_grupos(json,grupo, fecha, nro_partido) {
+
+      function fase_octavos() {
+
+        //Se carga el archivo
+        json = JSON.parse(localStorage['json']);
+
+        var dict = {};
+
+        $.each(json["grupoA"]["equipos"], function(i, f) {
+          dict[f.nombre] = 0;
+        });
+
+        $.each(json["grupoA"]["fecha1"]["partidos"], function(i, f) {
+
+          var goles_eq_1 = document.getElementById(f.equipo_1+"_#partido_1_ga").value;
+          var goles_eq_2 = document.getElementById(f.equipo_2+"_#partido_1_ga").value;
+
+          if (goles_eq_1 > goles_eq_2){
+            var value = dict[f.equipo_1];
+            dict[f.equipo_1] = value + 3;
+
+          } else if (goles_eq_1 < goles_eq_2) {
+              var value = dict[f.equipo_2];
+              dict[f.equipo_2] = value + 3;
+
+          } else {
+              var value = dict[f.equipo_1];
+              dict[f.equipo_1] = value + 1;
+              var value = dict[f.equipo_2];
+              dict[f.equipo_2] = value + 1;
+          }
+
+        });
+
+        $.each(json["grupoA"]["fecha2"]["partidos"], function(i, f) {
+
+          var goles_eq_1 = document.getElementById(f.equipo_1+"_#partido_2_ga").value;
+          var goles_eq_2 = document.getElementById(f.equipo_2+"_#partido_2_ga").value;
+
+          if (goles_eq_1 > goles_eq_2){
+            var value = dict[f.equipo_1];
+            dict[f.equipo_1] = value + 3;
+
+          } else if (goles_eq_1 < goles_eq_2) {
+            var value = dict[f.equipo_2];
+            dict[f.equipo_2] = value + 3;
+
+          } else {
+            var value = dict[f.equipo_1];
+            dict[f.equipo_1] = value + 1;
+            var value = dict[f.equipo_2];
+            dict[f.equipo_2] = value + 1;
+          }
+        });
+
+        $.each(json["grupoA"]["fecha3"]["partidos"], function(i, f) {
+
+          var goles_eq_1 = document.getElementById(f.equipo_1+"_#partido_3_ga").value;
+          var goles_eq_2 = document.getElementById(f.equipo_2+"_#partido_3_ga").value;
+
+          if (goles_eq_1 > goles_eq_2){
+            var value = dict[f.equipo_1];
+            dict[f.equipo_1] = value + 3;
+
+          } else if (goles_eq_1 < goles_eq_2) {
+            var value = dict[f.equipo_2];
+            dict[f.equipo_2] = value + 3;
+
+          } else {
+            var value = dict[f.equipo_1];
+            dict[f.equipo_1] = value + 1;
+            var value = dict[f.equipo_2];
+            dict[f.equipo_2] = value + 1;
+          }
+        });
+
+        console.log(dict);
+
+      }
+
+      function recorrer_grupo(json,grupo, fecha, nro_partido) {
 
         $.each(json[grupo][fecha]["partidos"], function(i, f) {
 
           var equipo_1 = "<label>" + f.equipo_1 + "</label>" ;
-          var input_equipo_1 = "<input type='number' style='width:12%; text-align:center;'/>  "   ;
-          var input_equipo_2 = "<input type='number' style='width:12%; text-align:center;'/>";
+          var input_equipo_1 = "<input id='"+f.equipo_1+"_"+nro_partido+"' type='number' style='width:12%; text-align:center;'/>  "   ;
+          var input_equipo_2 = "<input id='"+f.equipo_2+"_"+nro_partido+"' type='number' style='width:12%; text-align:center;'/>";
           var equipo_2 = "<label>" + f.equipo_2 + "</label> <br>" ;
           var estadio = "<label>" + f.estadio + "</label>";
           var ciudad = "<label>" + f.ciudad + "</label> ";
@@ -39,13 +119,16 @@
       //Muestro por consola el json recibido
       function datos(json) {
 
-        recorrer_grupos(json, "grupoA", "fecha1", "#partido_1_ga");
-        recorrer_grupos(json, "grupoA", "fecha2", "#partido_2_ga");
-        recorrer_grupos(json, "grupoA", "fecha3", "#partido_3_ga");
+        // Se guarda el archivo para trabajarlo luego
+        localStorage['json'] = JSON.stringify(json);
 
-        recorrer_grupos(json, "grupoB", "fecha1", "#partido_1_gb");
-        recorrer_grupos(json, "grupoB", "fecha2", "#partido_2_gb");
-        recorrer_grupos(json, "grupoB", "fecha3", "#partido_3_gb");
+        recorrer_grupo(json, "grupoA", "fecha1", "#partido_1_ga");
+        recorrer_grupo(json, "grupoA", "fecha2", "#partido_2_ga");
+        recorrer_grupo(json, "grupoA", "fecha3", "#partido_3_ga");
+
+        recorrer_grupo(json, "grupoB", "fecha1", "#partido_1_gb");
+        recorrer_grupo(json, "grupoB", "fecha2", "#partido_2_gb");
+        recorrer_grupo(json, "grupoB", "fecha3", "#partido_3_gb");
 
       }
 
@@ -69,9 +152,9 @@
 
     <h1 align="center">Fixture Mundial Rusia-2018</h1>
 
-    <div class="row">
+    <div class="row"  style="padding-left:2%;">
 
-      <div class="col-sm-4" style="padding-left: 3%;">
+      <div class="col-sm-4">
 
         <div class="card">
 
@@ -111,7 +194,7 @@
         </div>
 
       </div>
-
+      <!--
       <div class="col-sm-4">
 
         <div class="card">
@@ -152,7 +235,15 @@
         </div>
 
       </div>
+      -->
 
+    </div>
+
+
+    <br>
+
+    <div class="text-center">
+      <button onclick="fase_octavos()" type="button" name="btn-octavos"> Cargar 8vos</button>
     </div>
 
   </body>
