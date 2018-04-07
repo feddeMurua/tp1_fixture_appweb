@@ -99,7 +99,7 @@
         ]
     }
   },
-  "grupoE": { 
+  "grupoE": {
     "equipos":
       [{"nombre": "Brasil"},{"nombre": "Suiza"},{"nombre": "Costa Rica"},{"nombre": "Serbia"}],
     "fecha1":{
@@ -122,7 +122,7 @@
           {"equipo_1": "Serbia","equipo_2": "Brasil","estadio":"Otkrytie Arena", "ciudad":"Moscú","fecha":"27/06", "hora":"15:00"},
           {"equipo_1": "Suiza","equipo_2": "Costa Rica","estadio":"Estadio de Nizhni Nóvgorod", "ciudad":"Nizhni Nóvgorod","fecha":"27/06", "hora":"15:00"}
         ]
-    }  
+    }
   },
   "grupoF": {
     "equipos":
@@ -172,7 +172,7 @@
           {"equipo_1": "Inglaterra","equipo_2": "Bélgica","estadio":"Arena Baltika", "ciudad":"Kaliningrado","fecha":"28/06", "hora":"15:00"},
           {"equipo_1": "Panamá","equipo_2": "Túnez","estadio":"Mordovia Arena", "ciudad":"Saransk","fecha":"28/06", "hora":"15:00"}
         ]
-    }  
+    }
   },
   "grupoH": {
     "equipos":
@@ -197,6 +197,6 @@
           {"equipo_1": "Japón","equipo_2": "Polonia","estadio":"Volgogrado Arena", "ciudad":"Volgogrado","fecha":"28/06", "hora":"11:00"},
           {"equipo_1": "Senegal","equipo_2": "Colombia","estadio":"Samara Arena", "ciudad":"Samara","fecha":"28/06", "hora":"11:00"}
         ]
-    }  
+    }
   }
 }
