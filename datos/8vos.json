@@ -1,8 +1,16 @@
 {
-  "octavos_1": {
-    "partido":
+  "partidos": {
+    "#octavos_1":
     [
       {"equipo_1": "1A","equipo_2": "2B","estadio":"Estadio Fisht", "ciudad":"Sochi","fecha":"30/06", "hora":"15:00"}
+    ],
+    "#octavos_2":
+    [
+      {"equipo_1": "1C","equipo_2": "2D","estadio":"Kazán Arena", "ciudad":"Kazán","fecha":"30/06", "hora":"11:00"}
+    ],
+    "#octavos_3":
+    [
+      {"equipo_1": "1B","equipo_2": "2A","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"01/07", "hora":"11:00"}
     ]
   }
 }
