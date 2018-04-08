@@ -62,6 +62,11 @@
         dict_puntajes_grupoA = {} ; //por definicion, como no se declaro es GLOBAL.
         dict_puntajes_grupoB = {} ;
         dict_puntajes_grupoC = {} ;
+        dict_puntajes_grupoD = {} ;
+        dict_puntajes_grupoE = {} ;
+        dict_puntajes_grupoF = {} ;
+        dict_puntajes_grupoG = {} ;
+        dict_puntajes_grupoH = {} ;
 
         //Por cada equipo en el grupo se crea un objeto
         $.each(json["grupoA"]["equipos"], function(i, f) {
@@ -85,14 +90,59 @@
 
         });
 
+        $.each(json["grupoD"]["equipos"], function(i, f) {
+
+          var equipo = crear_puntaje_equipo(f.nombre);
+          dict_puntajes_grupoD[f.nombre] = equipo;
+
+        });
+
+        $.each(json["grupoE"]["equipos"], function(i, f) {
+
+          var equipo = crear_puntaje_equipo(f.nombre);
+          dict_puntajes_grupoE[f.nombre] = equipo;
+
+        });
+
+        $.each(json["grupoF"]["equipos"], function(i, f) {
+
+          var equipo = crear_puntaje_equipo(f.nombre);
+          dict_puntajes_grupoF[f.nombre] = equipo;
+
+        });
+
+        $.each(json["grupoG"]["equipos"], function(i, f) {
+
+          var equipo = crear_puntaje_equipo(f.nombre);
+          dict_puntajes_grupoG[f.nombre] = equipo;
+
+        });
+
+        $.each(json["grupoH"]["equipos"], function(i, f) {
+
+          var equipo = crear_puntaje_equipo(f.nombre);
+          dict_puntajes_grupoH[f.nombre] = equipo;
+
+        });
+
         calcular_puntos(json, "grupoA", fechas, ["_#partido_1_ga","_#partido_2_ga","_#partido_3_ga"], dict_puntajes_grupoA);
         calcular_puntos(json, "grupoB", fechas, ["_#partido_1_gb","_#partido_2_gb","_#partido_3_gb"], dict_puntajes_grupoB);
         calcular_puntos(json, "grupoC", fechas, ["_#partido_1_gc","_#partido_2_gc","_#partido_3_gc"], dict_puntajes_grupoC);
+        calcular_puntos(json, "grupoD", fechas, ["_#partido_1_gd","_#partido_2_gd","_#partido_3_gd"], dict_puntajes_grupoD);
+        calcular_puntos(json, "grupoE", fechas, ["_#partido_1_ge","_#partido_2_ge","_#partido_3_ge"], dict_puntajes_grupoE);
+        calcular_puntos(json, "grupoF", fechas, ["_#partido_1_gf","_#partido_2_gf","_#partido_3_gf"], dict_puntajes_grupoF);
+        calcular_puntos(json, "grupoG", fechas, ["_#partido_1_gg","_#partido_2_gg","_#partido_3_gg"], dict_puntajes_grupoG);
+        calcular_puntos(json, "grupoH", fechas, ["_#partido_1_gh","_#partido_2_gh","_#partido_3_gh"], dict_puntajes_grupoH);
 
         console.log(dict_puntajes_grupoA);
         console.log(dict_puntajes_grupoB);
         console.log(dict_puntajes_grupoC);
-
+        console.log(dict_puntajes_grupoD);
+        console.log(dict_puntajes_grupoE);
+        console.log(dict_puntajes_grupoF);
+        console.log(dict_puntajes_grupoG);
+        console.log(dict_puntajes_grupoH);
+        
       }
 
       function recorrer_grupo(json, grupo, fechas, nro_partidos) {
@@ -142,6 +192,11 @@
         recorrer_grupo(json, "grupoA", fechas, ["#partido_1_ga","#partido_2_ga","#partido_3_ga"]);
         recorrer_grupo(json, "grupoB", fechas, ["#partido_1_gb","#partido_2_gb","#partido_3_gb"]);
         recorrer_grupo(json, "grupoC", fechas, ["#partido_1_gc","#partido_2_gc","#partido_3_gc"]);
+        recorrer_grupo(json, "grupoD", fechas, ["#partido_1_gd","#partido_2_gd","#partido_3_gd"]);
+        recorrer_grupo(json, "grupoE", fechas, ["#partido_1_ge","#partido_2_ge","#partido_3_ge"]);
+        recorrer_grupo(json, "grupoF", fechas, ["#partido_1_gf","#partido_2_gf","#partido_3_gf"]);
+        recorrer_grupo(json, "grupoG", fechas, ["#partido_1_gg","#partido_2_gg","#partido_3_gg"]);
+        recorrer_grupo(json, "grupoH", fechas, ["#partido_1_gh","#partido_2_gh","#partido_3_gh"]);
 
       }
 
@@ -165,20 +220,20 @@
 
     <h1 align="center">Fixture Mundial Rusia-2018</h1>
 
-    <div class="row"  style="padding-left:2%;">
+    <div class="row"  style="padding-left:2%; padding-right:2%;">
 
-      <div class="col-sm-4">
+      <div class="col-sm-3">
 
         <div class="card">
 
-          <div class="card-header">
+          <div class="card-header" style="text-align:center;">
             GRUPO A
           </div>
 
           <div class="card-body">
 
             <div class="card">
-              <label id="fecha_1" style="text-align:center;">FECHA 1</label>
+              <label style="text-align:center;">FECHA 1</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_1_ga"></label>
               </form>
@@ -187,7 +242,7 @@
             <br>
 
             <div class="card">
-              <label id="fecha_2" style="text-align:center;">FECHA 2</label>
+              <label style="text-align:center;">FECHA 2</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_2_ga"></label>
               </form>
@@ -196,7 +251,7 @@
             <br>
 
             <div class="card">
-              <label id="fecha_3" style="text-align:center;">FECHA 3</label>
+              <label style="text-align:center;">FECHA 3</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_3_ga"></label>
               </form>
@@ -208,18 +263,18 @@
 
       </div>
 
-      <div class="col-sm-4">
+      <div class="col-sm-3">
 
         <div class="card">
 
-          <div class="card-header">
+          <div class="card-header" style="text-align:center;">
             GRUPO B
           </div>
 
           <div class="card-body">
 
             <div class="card">
-              <label id="fecha_1" style="text-align:center;">FECHA 1</label>
+              <label style="text-align:center;">FECHA 1</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_1_gb"></label>
               </form>
@@ -228,7 +283,7 @@
             <br>
 
             <div class="card">
-              <label id="fecha_2" style="text-align:center;">FECHA 2</label>
+              <label style="text-align:center;">FECHA 2</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_2_gb"></label>
               </form>
@@ -237,7 +292,7 @@
             <br>
 
             <div class="card">
-              <label id="fecha_3" style="text-align:center;">FECHA 3</label>
+              <label style="text-align:center;">FECHA 3</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_3_gb"></label>
               </form>
@@ -249,18 +304,18 @@
 
       </div>
 
-      <div class="col-sm-4" style="padding-right:2%;">
+      <div class="col-sm-3">
 
         <div class="card">
 
-          <div class="card-header">
+          <div class="card-header" style="text-align:center;">
             GRUPO C
           </div>
 
           <div class="card-body">
 
             <div class="card">
-              <label id="fecha_1" style="text-align:center;">FECHA 1</label>
+              <label style="text-align:center;">FECHA 1</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_1_gc"></label>
               </form>
@@ -269,7 +324,7 @@
             <br>
 
             <div class="card">
-              <label id="fecha_2" style="text-align:center;">FECHA 2</label>
+              <label style="text-align:center;">FECHA 2</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_2_gc"></label>
               </form>
@@ -278,9 +333,220 @@
             <br>
 
             <div class="card">
-              <label id="fecha_3" style="text-align:center;">FECHA 3</label>
+              <label style="text-align:center;">FECHA 3</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_3_gc"></label>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-sm-3">
+
+        <div class="card">
+
+          <div class="card-header" style="text-align:center;">
+            GRUPO D
+          </div>
+
+          <div class="card-body">
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 1</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_1_gd"></label>
+              </form>
+            </div>
+
+            <br>
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 2</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_2_gd"></label>
+              </form>
+            </div>
+
+            <br>
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 3</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_3_gd"></label>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row"  style="padding-left:2%; padding-right:2%;">
+
+      <div class="col-sm-3">
+
+        <div class="card">
+
+          <div class="card-header" style="text-align:center;">
+            GRUPO E
+          </div>
+
+          <div class="card-body">
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 1</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_1_ge"></label>
+              </form>
+            </div>
+
+            <br>
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 2</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_2_ge"></label>
+              </form>
+            </div>
+
+            <br>
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 3</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_3_ge"></label>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-sm-3">
+
+        <div class="card">
+
+          <div class="card-header" style="text-align:center;">
+            GRUPO F
+          </div>
+
+          <div class="card-body">
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 1</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_1_gf"></label>
+              </form>
+            </div>
+
+            <br>
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 2</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_2_gf"></label>
+              </form>
+            </div>
+
+            <br>
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 3</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_3_gf"></label>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="col-sm-3">
+
+        <div class="card">
+
+          <div class="card-header" style="text-align:center;">
+            GRUPO G
+          </div>
+
+          <div class="card-body">
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 1</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_1_gg"></label>
+              </form>
+            </div>
+
+            <br>
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 2</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_2_gg"></label>
+              </form>
+            </div>
+
+            <br>
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 3</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_3_gg"></label>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-sm-3">
+
+        <div class="card">
+
+          <div class="card-header" style="text-align:center;">
+            GRUPO H
+          </div>
+
+          <div class="card-body">
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 1</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_1_gh"></label>
+              </form>
+            </div>
+
+            <br>
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 2</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_2_gh"></label>
+              </form>
+            </div>
+
+            <br>
+
+            <div class="card">
+              <label style="text-align:center;">FECHA 3</label>
+              <form method="get" style="text-align:center;">
+                <label id="partido_3_gh"></label>
               </form>
             </div>
 

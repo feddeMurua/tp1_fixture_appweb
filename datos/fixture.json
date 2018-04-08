@@ -131,20 +131,20 @@
       "partidos":
         [
           {"equipo_1": "Alemania","equipo_2": "México","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"17/06", "hora":"12:00"},
-          {"equipo_1": "Suecia","equipo_2": "Corea del Sur","estadio":"Estadio de Nizhni Nóvgorod", "ciudad":"Nizhni Nóvgorod","fecha":"18/06", "hora":"9:00"}
+          {"equipo_1": "Suecia","equipo_2": "República de Corea","estadio":"Estadio de Nizhni Nóvgorod", "ciudad":"Nizhni Nóvgorod","fecha":"18/06", "hora":"9:00"}
         ]
     },
     "fecha2":{
       "partidos":
         [
           {"equipo_1": "Alemania","equipo_2": "Suecia","estadio":"Estadio Fisht", "ciudad":"Sochi","fecha":"23/06", "hora":"12:00"},
-          {"equipo_1": "Corea del Sur","equipo_2": "México","estadio":"Rostov Arena", "ciudad":"Rostov del Don","fecha":"23/06", "hora":"15:00"}
+          {"equipo_1": "República de Corea","equipo_2": "México","estadio":"Rostov Arena", "ciudad":"Rostov del Don","fecha":"23/06", "hora":"15:00"}
         ]
     },
     "fecha3":{
       "partidos":
         [
-          {"equipo_1": "Corea del Sur","equipo_2": "Alemania","estadio":"Kazán Arena", "ciudad":"Kazán","fecha":"27/06", "hora":"11:00"},
+          {"equipo_1": "República de Corea","equipo_2": "Alemania","estadio":"Kazán Arena", "ciudad":"Kazán","fecha":"27/06", "hora":"11:00"},
           {"equipo_1": "México","equipo_2": "Suecia","estadio":"Ekaterimburgo Arena", "ciudad":"Ekaterimburgo","fecha":"27/06", "hora":"11:00"}
         ]
     }
