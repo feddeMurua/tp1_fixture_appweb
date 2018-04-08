@@ -8,41 +8,37 @@
 
     <script language="javascript">
 
-      function armar_llaves(json_8vos, ganadores_grupo_1, ganadores_grupo_2, llaves) {
 
-        for (k = 0; k < 2; k++) {
+      function armar_llaves(json, ganadores_grupo_1, ganadores_grupo_2, llave) {
 
-          $.each(json_8vos["partidos"][llaves[k]], function(i, f) {
+        $.each(json["partidos"][llave], function(i, f) {
 
+          var equipo_1 = "<label>" + f.equipo_1.replace(f.equipo_1, ganadores_grupo_1.nombre) + "</label>" ;
+          var input_equipo_1 = "<input id='"+f.equipo_1+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>  "   ;
+          var input_equipo_2 = "<input id='"+f.equipo_2+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>";
+          var equipo_2 = "<label>" + f.equipo_2.replace(f.equipo_2, ganadores_grupo_2.nombre) + "</label> <br>" ;
+          var fecha = "<label>" + f.fecha + "</label>";
+          var estadio = "<label>" + f.estadio + "</label>";
+          var ciudad = "<label>" + f.ciudad + "</label> ";
+          var hora = "<label>" + f.hora + "</label> <br>";
 
-            var equipo_1 = "<label>" + f.equipo_1.replace(f.equipo_1, ganadores_grupo_1.nombre) + "</label>" ;
-            var input_equipo_1 = "<input id='"+f.equipo_1+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>  "   ;
-            var input_equipo_2 = "<input id='"+f.equipo_2+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>";
-            var equipo_2 = "<label>" + f.equipo_2.replace(f.equipo_2, ganadores_grupo_2.nombre) + "</label> <br>" ;
-            var fecha = "<label>" + f.fecha + "</label>";
-            var estadio = "<label>" + f.estadio + "</label>";
-            var ciudad = "<label>" + f.ciudad + "</label> ";
-            var hora = "<label>" + f.hora + "</label> <br>";
+          $(equipo_1).appendTo(llave);
+          $(llave).append(" ");
+          $(input_equipo_1).appendTo(llave);
+          $(llave).append(" ");
+          $(input_equipo_2).appendTo(llave);
+          $(llave).append(" ");
+          $(equipo_2).appendTo(llave);
+          $(llave).append(" ");
+          $(fecha).appendTo(llave);
+          $(llave).append(" | ");
+          $(estadio).appendTo(llave);
+          $(llave).append(" | ");
+          $(ciudad).appendTo(llave);
+          $(llave).append(" | ");
+          $(hora).appendTo(llave);
 
-            $(equipo_1).appendTo(llaves[k]);
-            $(llaves[k]).append(" ");
-            $(input_equipo_1).appendTo(llaves[k]);
-            $(llaves[k]).append(" ");
-            $(input_equipo_2).appendTo(llaves[k]);
-            $(llaves[k]).append(" ");
-            $(equipo_2).appendTo(llaves[k]);
-            $(llaves[k]).append(" ");
-            $(fecha).appendTo(llaves[k]);
-            $(llaves[k]).append(" | ");
-            $(estadio).appendTo(llaves[k]);
-            $(llaves[k]).append(" | ");
-            $(ciudad).appendTo(llaves[k]);
-            $(llaves[k]).append(" | ");
-            $(hora).appendTo(llaves[k]);
-
-         });
-
-       }
+       });
 
       }
 
@@ -65,8 +61,8 @@
         //funcion lodash para trabajar los diccionarios
         var ganadores_ga = _.slice((_.sortBy(dict_puntajes_grupoA, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2); // slice toma las ultimas dos posiciones, pos 0:segundo
         var ganadores_gb = _.slice((_.sortBy(dict_puntajes_grupoB, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
-        armar_llaves(json_8vos, ganadores_ga[1], ganadores_gb[0], ["#octavos_1"]);
-        armar_llaves(json_8vos, ganadores_gb[1], ganadores_ga[0], ["#octavos_3"]);
+        armar_llaves(json_8vos, ganadores_ga[1], ganadores_gb[0], "#octavos_1");
+        armar_llaves(json_8vos, ganadores_gb[1], ganadores_ga[0], "#octavos_3");
 
       }
 
