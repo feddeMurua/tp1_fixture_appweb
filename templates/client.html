@@ -3,627 +3,286 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" href="../estaticos/css/bootstrap.css"/>
     <title>App-Web 2018</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,200,500,600,700,800,300" rel="stylesheet" />
+    <link href="../estaticos/css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../estaticos/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+
     <script type="text/javascript" src="../estaticos/js/jquery.js"></script>
     <script type="text/javascript" src="../estaticos/js/lodash.js"></script>
+    <script type="text/javascript" src="../estaticos/js/funcionesJS.js"></script>
 
-    <script language="javascript">
-
-      function armar_llaves(json, ganadores_grupo_1, ganadores_grupo_2, llave) {
-
-        $.each(json["partidos"][llave], function(i, f) {
-
-          var equipo_1 = "<label>" + f.equipo_1.replace(f.equipo_1, ganadores_grupo_1.nombre) + "</label>" ;
-          var input_equipo_1 = "<input id='"+f.equipo_1+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>  "   ;
-          var input_equipo_2 = "<input id='"+f.equipo_2+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>";
-          var equipo_2 = "<label>" + f.equipo_2.replace(f.equipo_2, ganadores_grupo_2.nombre) + "</label> <br>" ;
-          var fecha = "<label>" + f.fecha + "</label>";
-          var estadio = "<label>" + f.estadio + "</label>";
-          var ciudad = "<label>" + f.ciudad + "</label> ";
-          var hora = "<label>" + f.hora + "</label> <br>";
-
-          $(equipo_1).appendTo(llave);
-          $(llave).append(" ");
-          $(input_equipo_1).appendTo(llave);
-          $(llave).append(" ");
-          $(input_equipo_2).appendTo(llave);
-          $(llave).append(" ");
-          $(equipo_2).appendTo(llave);
-          $(llave).append(" ");
-          $(fecha).appendTo(llave);
-          $(llave).append(" | ");
-          $(estadio).appendTo(llave);
-          $(llave).append(" | ");
-          $(ciudad).appendTo(llave);
-          $(llave).append(" | ");
-          $(hora).appendTo(llave);
-
-       });
-
-      }
-
-      function octavos(json_8vos){
-
-        //funcion lodash para trabajar los diccionarios
-        var ganadores_ga = _.slice((_.sortBy(dict_puntajes_grupoA, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2); // slice toma las ultimas dos posiciones, pos 0:segundo en la tabla
-        var ganadores_gb = _.slice((_.sortBy(dict_puntajes_grupoB, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
-        armar_llaves(json_8vos, ganadores_ga[1], ganadores_gb[0], "#octavos_1");
-        armar_llaves(json_8vos, ganadores_gb[1], ganadores_ga[0], "#octavos_3");
-
-        var ganadores_gc = _.slice((_.sortBy(dict_puntajes_grupoC, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
-        var ganadores_gd = _.slice((_.sortBy(dict_puntajes_grupoD, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
-        armar_llaves(json_8vos, ganadores_gc[1], ganadores_gd[0], "#octavos_2");
-        armar_llaves(json_8vos, ganadores_gd[1], ganadores_gc[0], "#octavos_4");
-
-        var ganadores_ge = _.slice((_.sortBy(dict_puntajes_grupoE, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
-        var ganadores_gf = _.slice((_.sortBy(dict_puntajes_grupoF, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
-        armar_llaves(json_8vos, ganadores_ge[1], ganadores_gf[0], "#octavos_5");
-        armar_llaves(json_8vos, ganadores_gf[1], ganadores_ge[0], "#octavos_7");
-
-        var ganadores_gg = _.slice((_.sortBy(dict_puntajes_grupoG, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
-        var ganadores_gh = _.slice((_.sortBy(dict_puntajes_grupoH, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
-        armar_llaves(json_8vos, ganadores_gg[1], ganadores_gh[0], "#octavos_6");
-        armar_llaves(json_8vos, ganadores_gh[1], ganadores_gg[0], "#octavos_8");
-
-      }
-
-      function generar_octavos(){
-        $.getJSON(
-          "../server.php", // Server URL
-          { fase: "octavos" }, // Dato que se envia al servidor
-          octavos
-        );
-      }
-
-      function actualizar_tabla(goles_a_favor, goles_en_contra, equipo, dict_puntajes_grupo) {
-
-        // trabajar sobre la tabla de puntaje
-        dict_puntajes_grupo[equipo].goles_a_favor = dict_puntajes_grupo[equipo].goles_a_favor + parseInt(goles_a_favor);
-        dict_puntajes_grupo[equipo].goles_en_contra = dict_puntajes_grupo[equipo].goles_en_contra + parseInt(goles_en_contra);
-        dict_puntajes_grupo[equipo].dif_gol =  dict_puntajes_grupo[equipo].dif_gol + (parseInt(goles_a_favor) - parseInt(goles_en_contra));
-
-        if ( goles_a_favor > goles_en_contra ) {
-          dict_puntajes_grupo[equipo].puntos = dict_puntajes_grupo[equipo].puntos + 3;
-        } else if (goles_a_favor == goles_en_contra) {
-          dict_puntajes_grupo[equipo].puntos = dict_puntajes_grupo[equipo].puntos + 1;
-        }
-      }
-
-      function calcular_puntos(json, grupo, fechas, nro_partidos, dict_puntajes_grupo){
-
-          // 3 fechas por grupo.
-          for (k = 0 ; k < 3 ; k++) {
-
-            $.each(json[grupo][fechas[k]]["partidos"], function(i, f) {
-
-              goles_eq_1 = document.getElementById(f.equipo_1+nro_partidos[k]).value;
-              goles_eq_2 = document.getElementById(f.equipo_2+nro_partidos[k]).value;
-
-              actualizar_tabla(goles_eq_1, goles_eq_2, f.equipo_1, dict_puntajes_grupo);
-              actualizar_tabla(goles_eq_2, goles_eq_1, f.equipo_2, dict_puntajes_grupo);
-
-            });
-          }
-      }
-
-      //puntajes por cada equipo
-      function crear_puntaje_equipo(nombre_equipo) {
-        return {nombre:nombre_equipo,
-                puntos:0,
-                goles_a_favor:0,
-                goles_en_contra:0,
-                dif_gol:0
-              };
-      }
-
-      function clasificacion_equipos() {
-
-        //deshabilitar boton 8vos
-        document.getElementById("btn-octavos").disabled = true;
-
-        //Se carga el archivo
-        json = JSON.parse(localStorage['json']);
-
-        //fechas
-        var fechas = ["fecha1","fecha2","fecha3"];
-
-        //tabla, datos cada equipo en el torneo
-        dict_puntajes_grupoA = {} ; //por definicion, como no se declaro es GLOBAL.
-        dict_puntajes_grupoB = {} ;
-        dict_puntajes_grupoC = {} ;
-        dict_puntajes_grupoD = {} ;
-        dict_puntajes_grupoE = {} ;
-        dict_puntajes_grupoF = {} ;
-        dict_puntajes_grupoG = {} ;
-        dict_puntajes_grupoH = {} ;
-
-        //Por cada equipo en el grupo se crea un objeto
-        $.each(json["grupoA"]["equipos"], function(i, f) {
-
-          var equipo = crear_puntaje_equipo(f.nombre);
-          dict_puntajes_grupoA[f.nombre] = equipo;
-
-        });
-
-        $.each(json["grupoB"]["equipos"], function(i, f) {
-
-          var equipo = crear_puntaje_equipo(f.nombre);
-          dict_puntajes_grupoB[f.nombre] = equipo;
-
-        });
-
-        $.each(json["grupoC"]["equipos"], function(i, f) {
-
-          var equipo = crear_puntaje_equipo(f.nombre);
-          dict_puntajes_grupoC[f.nombre] = equipo;
-
-        });
-
-        $.each(json["grupoD"]["equipos"], function(i, f) {
-
-          var equipo = crear_puntaje_equipo(f.nombre);
-          dict_puntajes_grupoD[f.nombre] = equipo;
-
-        });
-
-        $.each(json["grupoE"]["equipos"], function(i, f) {
-
-          var equipo = crear_puntaje_equipo(f.nombre);
-          dict_puntajes_grupoE[f.nombre] = equipo;
-
-        });
-
-        $.each(json["grupoF"]["equipos"], function(i, f) {
-
-          var equipo = crear_puntaje_equipo(f.nombre);
-          dict_puntajes_grupoF[f.nombre] = equipo;
-
-        });
-
-        $.each(json["grupoG"]["equipos"], function(i, f) {
-
-          var equipo = crear_puntaje_equipo(f.nombre);
-          dict_puntajes_grupoG[f.nombre] = equipo;
-
-        });
-
-        $.each(json["grupoH"]["equipos"], function(i, f) {
-
-          var equipo = crear_puntaje_equipo(f.nombre);
-          dict_puntajes_grupoH[f.nombre] = equipo;
-
-        });
-
-        calcular_puntos(json, "grupoA", fechas, ["_#partido_1_ga","_#partido_2_ga","_#partido_3_ga"], dict_puntajes_grupoA);
-        calcular_puntos(json, "grupoB", fechas, ["_#partido_1_gb","_#partido_2_gb","_#partido_3_gb"], dict_puntajes_grupoB);
-        calcular_puntos(json, "grupoC", fechas, ["_#partido_1_gc","_#partido_2_gc","_#partido_3_gc"], dict_puntajes_grupoC);
-        calcular_puntos(json, "grupoD", fechas, ["_#partido_1_gd","_#partido_2_gd","_#partido_3_gd"], dict_puntajes_grupoD);
-        calcular_puntos(json, "grupoE", fechas, ["_#partido_1_ge","_#partido_2_ge","_#partido_3_ge"], dict_puntajes_grupoE);
-        calcular_puntos(json, "grupoF", fechas, ["_#partido_1_gf","_#partido_2_gf","_#partido_3_gf"], dict_puntajes_grupoF);
-        calcular_puntos(json, "grupoG", fechas, ["_#partido_1_gg","_#partido_2_gg","_#partido_3_gg"], dict_puntajes_grupoG);
-        calcular_puntos(json, "grupoH", fechas, ["_#partido_1_gh","_#partido_2_gh","_#partido_3_gh"], dict_puntajes_grupoH);
-
-        generar_octavos();
-
-      }
-
-      function recorrer_grupo(json, grupo, fechas, nro_partidos) {
-
-        // 3 fechas por grupo.
-        for (k = 0 ; k < 3 ; k++) {
-
-          $.each(json[grupo][fechas[k]]["partidos"], function(i, f) {
-
-            var equipo_1 = "<label>" + f.equipo_1 + "</label>" ;
-            var input_equipo_1 = "<input id='"+f.equipo_1+"_"+nro_partidos[k]+"' type='number' min='0' style='width:12%; text-align:center;'/>  "   ;
-            var input_equipo_2 = "<input id='"+f.equipo_2+"_"+nro_partidos[k]+"' type='number' min='0' style='width:12%; text-align:center;'/>";
-            var equipo_2 = "<label>" + f.equipo_2 + "</label> <br>" ;
-            var fecha = "<label>" + f.fecha + "</label>";
-            var estadio = "<label>" + f.estadio + "</label>";
-            var ciudad = "<label>" + f.ciudad + "</label> ";
-            var hora = "<label>" + f.hora + "</label> <br>";
-
-            $(equipo_1).appendTo(nro_partidos[k]);
-            $(nro_partidos[k]).append(" ");
-            $(input_equipo_1).appendTo(nro_partidos[k]);
-            $(nro_partidos[k]).append(" ");
-            $(input_equipo_2).appendTo(nro_partidos[k]);
-            $(nro_partidos[k]).append(" ");
-            $(equipo_2).appendTo(nro_partidos[k]);
-            $(nro_partidos[k]).append(" ");
-            $(fecha).appendTo(nro_partidos[k]);
-            $(nro_partidos[k]).append(" | ");
-            $(estadio).appendTo(nro_partidos[k]);
-            $(nro_partidos[k]).append(" | ");
-            $(ciudad).appendTo(nro_partidos[k]);
-            $(nro_partidos[k]).append(" | ");
-            $(hora).appendTo(nro_partidos[k]);
-
-         });
-
-       }
-
-      }
-
-      //Se almacena el json para trabajarlo luego en cada grupo
-      function datos(json) {
-
-        // Se guarda el archivo para trabajarlo luego
-        localStorage['json'] = JSON.stringify(json);
-
-        //fechas
-        var fechas = ["fecha1","fecha2","fecha3"];
-
-        recorrer_grupo(json, "grupoA", fechas, ["#partido_1_ga","#partido_2_ga","#partido_3_ga"]);
-        recorrer_grupo(json, "grupoB", fechas, ["#partido_1_gb","#partido_2_gb","#partido_3_gb"]);
-        recorrer_grupo(json, "grupoC", fechas, ["#partido_1_gc","#partido_2_gc","#partido_3_gc"]);
-        recorrer_grupo(json, "grupoD", fechas, ["#partido_1_gd","#partido_2_gd","#partido_3_gd"]);
-        recorrer_grupo(json, "grupoE", fechas, ["#partido_1_ge","#partido_2_ge","#partido_3_ge"]);
-        recorrer_grupo(json, "grupoF", fechas, ["#partido_1_gf","#partido_2_gf","#partido_3_gf"]);
-        recorrer_grupo(json, "grupoG", fechas, ["#partido_1_gg","#partido_2_gg","#partido_3_gg"]);
-        recorrer_grupo(json, "grupoH", fechas, ["#partido_1_gh","#partido_2_gh","#partido_3_gh"]);
-
-      }
-
-      //fase de grupos
-      function init() {
-          $.getJSON(
-            "../server.php", // Server URL
-            { fase: "grupos" }, // Dato que se envia al servidor
-            datos
-          );
-      }
-
-      // run AJAX query cuando carga la página.
-      window.onload=init;
-
-    </script>
 
   </head>
 
-  <body>
+<body>
 
-    <h1 align="center">Fixture Mundial Rusia-2018</h1>
+    <div id="menu-wrapper">
+      <div id="menu" class="container">
+        <ul>
+          <li class="current_page_item"><a href="#">Homepage</a></li>
+          <li><a href="#">Grupos</a></li>
+          <li><a href="#">Octavos</a></li>
+          <li><a href="#">Cuartos</a></li>
+          <li><a href="#">Semifinal</a></li>
+          <li><a href="#">Final</a></li>
+        </ul>
+      </div>
+      <!-- end #menu --> 
+      <div style="background:#11111 !important" class="jumbotron">
+        <div class="container">
+            <span class="text-ligth"><h1>Fixture Mundial Rusia-2018</h1></span>
+        </div>
+      </div>
+    </div>
 
-    <div class="row"  style="padding-left:1; padding-right:1%;">
 
-      <div class="col-sm-3">
-
+  <br>
+  <br>
+    <div class="row"  style="padding-left:2%; padding-right:2%;">
+      <div class="col-sm-6">
         <div class="card">
-
           <div class="card-header" style="text-align:center;">
             GRUPO A
           </div>
-
-          <div class="card-body">
-
-            <div class="card">
+          <div class="card-body"> 
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 1</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_1_ga"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 2</label>
-              <form method="get" style="text-align:center;">
+              <form method="get" style="text-align:center;">      
                 <label id="partido_2_ga"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 3</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_3_ga"></label>
               </form>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
-      <div class="col-sm-3">
-
+      <div class="col-sm-6">
         <div class="card">
-
           <div class="card-header" style="text-align:center;">
             GRUPO B
           </div>
-
           <div class="card-body">
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 1</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_1_gb"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 2</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_2_gb"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 3</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_3_gb"></label>
               </form>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
-      <div class="col-sm-3">
-
-        <div class="card">
-
-          <div class="card-header" style="text-align:center;">
-            GRUPO C
+    </div>
+    <br>
+    <div class="row"  style="padding-left: 2%; padding-right: 2%">
+      <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header" style="text-align:center;">
+              GRUPO C
+            </div>
+            <div class="card-body">
+              <div class="card text-white bg-secondary mb-3">
+                <label style="text-align:center;">FECHA 1</label>
+                <form method="get" style="text-align:center;">
+                  <label id="partido_1_gc"></label>
+                </form>
+              </div>
+              <br>
+              <div class="card text-white bg-secondary mb-3">
+                <label style="text-align:center;">FECHA 2</label>
+                <form method="get" style="text-align:center;">
+                  <label id="partido_2_gc"></label>
+                </form>
+              </div>
+              <br>
+              <div class="card text-white bg-secondary mb-3">
+                <label style="text-align:center;">FECHA 3</label>
+                <form method="get" style="text-align:center;">
+                  <label id="partido_3_gc"></label>
+                </form>
+              </div>
+            </div>
           </div>
-
-          <div class="card-body">
-
-            <div class="card">
-              <label style="text-align:center;">FECHA 1</label>
-              <form method="get" style="text-align:center;">
-                <label id="partido_1_gc"></label>
-              </form>
-            </div>
-
-            <br>
-
-            <div class="card">
-              <label style="text-align:center;">FECHA 2</label>
-              <form method="get" style="text-align:center;">
-                <label id="partido_2_gc"></label>
-              </form>
-            </div>
-
-            <br>
-
-            <div class="card">
-              <label style="text-align:center;">FECHA 3</label>
-              <form method="get" style="text-align:center;">
-                <label id="partido_3_gc"></label>
-              </form>
-            </div>
-
-          </div>
-
-        </div>
-
       </div>
-
-      <div class="col-sm-3">
-
+      <div class="col-sm-6">
         <div class="card">
-
           <div class="card-header" style="text-align:center;">
             GRUPO D
           </div>
-
           <div class="card-body">
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 1</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_1_gd"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 2</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_2_gd"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 3</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_3_gd"></label>
               </form>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
-    <div class="row"  style="padding-left:1%; padding-right:1%;">
-
-      <div class="col-sm-3">
-
+    <br>
+    <div class="row"  style="padding-left:2%; padding-right:2%;">
+      <div class="col-sm-6">
         <div class="card">
-
           <div class="card-header" style="text-align:center;">
             GRUPO E
           </div>
-
           <div class="card-body">
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 1</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_1_ge"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 2</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_2_ge"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 3</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_3_ge"></label>
               </form>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
-      <div class="col-sm-3">
-
+      <div class="col-sm-6">
         <div class="card">
-
           <div class="card-header" style="text-align:center;">
             GRUPO F
           </div>
-
           <div class="card-body">
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 1</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_1_gf"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 2</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_2_gf"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 3</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_3_gf"></label>
               </form>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
-      <br>
-
-      <div class="col-sm-3">
-
+    </div>
+    <br>
+    <div class="row" style="padding-left:2%; padding-right:2%;" >
+      <div class="col-sm-6">
         <div class="card">
-
           <div class="card-header" style="text-align:center;">
             GRUPO G
           </div>
-
           <div class="card-body">
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 1</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_1_gg"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 2</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_2_gg"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 3</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_3_gg"></label>
               </form>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
-      <div class="col-sm-3">
-
+      <div class="col-sm-6">
         <div class="card">
-
           <div class="card-header" style="text-align:center;">
             GRUPO H
           </div>
-
           <div class="card-body">
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 1</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_1_gh"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 2</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_2_gh"></label>
               </form>
             </div>
-
             <br>
-
-            <div class="card">
+            <div class="card text-white bg-secondary mb-3">
               <label style="text-align:center;">FECHA 3</label>
               <form method="get" style="text-align:center;">
                 <label id="partido_3_gh"></label>
               </form>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
     <br>
-
     <div class="text-center">
       <button onclick="clasificacion_equipos()" type="button" id="btn-octavos"> Cargar 8vos</button>
     </div>
@@ -718,7 +377,6 @@
       </div>
 
     </div>
-
-
   </body>
 </html>
+
