@@ -3,7 +3,7 @@ function armar_llaves(json, ganadores_grupo_1, ganadores_grupo_2, llave) {
         $.each(json["partidos"][llave], function(i, f) {
 
           var equipo_1 = "<label>" + f.equipo_1.replace(f.equipo_1, ganadores_grupo_1.nombre) + "</label>" ;
-          var input_equipo_1 = "<input id='"+f.equipo_1+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>  "   ;
+          var input_equipo_1 = "<input id='"+f.equipo_1+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>  ";
           var input_equipo_2 = "<input id='"+f.equipo_2+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>";
           var equipo_2 = "<label>" + f.equipo_2.replace(f.equipo_2, ganadores_grupo_2.nombre) + "</label> <br>" ;
           var fecha = "<label>" + f.fecha + "</label>";
@@ -33,25 +33,26 @@ function armar_llaves(json, ganadores_grupo_1, ganadores_grupo_2, llave) {
 
       function octavos(json_8vos){
 
-        /*
-        CRUCES
-
-        30/6, 15 hs. 1°A vs. 2°B, Estadio Fisht (Sochi) (octavos 1)
-        30/6, 11 hs. 1° C vs. 2° D, Kazán Arena (Kazán) (octavos 2)
-        1/7, 11 hs. 1° B vs. 2° A, Estadio Olímpico Luzhnikí (Moscú) (octavos 3)
-        1/7, 15 hs. 1° D vs. 2° C, Estadio de Nizhni Nóvgorod (Nizhni Nóvgorod) (octavos 4)
-        2/7, 11 hs. 1° E vs. 2° F, Samara Arena (Samara) (octavos 5)
-        2/7, 15 hs. 1°G vs. 2° H, Rostov Arena (Rostov del Don) (octavos 6)
-        3/7, 11 hs. 1° F vs. 2° E, Zenit Arena (San Petersburgo) (octavos 7)
-        3/7, 15 hs. 1° H vs. 2° G, Otkrytie Arena (Moscú) (octavos 8)
-
-        */
-
         //funcion lodash para trabajar los diccionarios
-        var ganadores_ga = _.slice((_.sortBy(dict_puntajes_grupoA, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2); // slice toma las ultimas dos posiciones, pos 0:segundo
+        var ganadores_ga = _.slice((_.sortBy(dict_puntajes_grupoA, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2); // slice toma las ultimas dos posiciones, pos 0:segundo en la tabla
         var ganadores_gb = _.slice((_.sortBy(dict_puntajes_grupoB, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
         armar_llaves(json_8vos, ganadores_ga[1], ganadores_gb[0], "#octavos_1");
         armar_llaves(json_8vos, ganadores_gb[1], ganadores_ga[0], "#octavos_3");
+
+        var ganadores_gc = _.slice((_.sortBy(dict_puntajes_grupoC, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        var ganadores_gd = _.slice((_.sortBy(dict_puntajes_grupoD, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        armar_llaves(json_8vos, ganadores_gc[1], ganadores_gd[0], "#octavos_2");
+        armar_llaves(json_8vos, ganadores_gd[1], ganadores_gc[0], "#octavos_4");
+
+        var ganadores_ge = _.slice((_.sortBy(dict_puntajes_grupoE, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        var ganadores_gf = _.slice((_.sortBy(dict_puntajes_grupoF, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        armar_llaves(json_8vos, ganadores_ge[1], ganadores_gf[0], "#octavos_5");
+        armar_llaves(json_8vos, ganadores_gf[1], ganadores_ge[0], "#octavos_7");
+
+        var ganadores_gg = _.slice((_.sortBy(dict_puntajes_grupoG, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        var ganadores_gh = _.slice((_.sortBy(dict_puntajes_grupoH, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        armar_llaves(json_8vos, ganadores_gg[1], ganadores_gh[0], "#octavos_6");
+        armar_llaves(json_8vos, ganadores_gh[1], ganadores_gg[0], "#octavos_8");
 
       }
 
@@ -75,7 +76,6 @@ function armar_llaves(json, ganadores_grupo_1, ganadores_grupo_2, llave) {
         } else if (goles_a_favor == goles_en_contra) {
           dict_puntajes_grupo[equipo].puntos = dict_puntajes_grupo[equipo].puntos + 1;
         }
-
       }
 
       function calcular_puntos(json, grupo, fechas, nro_partidos, dict_puntajes_grupo){
@@ -92,9 +92,7 @@ function armar_llaves(json, ganadores_grupo_1, ganadores_grupo_2, llave) {
               actualizar_tabla(goles_eq_2, goles_eq_1, f.equipo_2, dict_puntajes_grupo);
 
             });
-
           }
-
       }
 
       //puntajes por cada equipo
