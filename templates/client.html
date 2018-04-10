@@ -8,7 +8,6 @@
 
     <script language="javascript">
 
-
       function armar_llaves(json, ganadores_grupo_1, ganadores_grupo_2, llave) {
 
         $.each(json["partidos"][llave], function(i, f) {
@@ -59,10 +58,26 @@
         */
 
         //funcion lodash para trabajar los diccionarios
-        var ganadores_ga = _.slice((_.sortBy(dict_puntajes_grupoA, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2); // slice toma las ultimas dos posiciones, pos 0:segundo
+        var ganadores_ga = _.slice((_.sortBy(dict_puntajes_grupoA, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2); // slice toma las ultimas dos posiciones, pos 0:segundo en la tabla
         var ganadores_gb = _.slice((_.sortBy(dict_puntajes_grupoB, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
         armar_llaves(json_8vos, ganadores_ga[1], ganadores_gb[0], "#octavos_1");
         armar_llaves(json_8vos, ganadores_gb[1], ganadores_ga[0], "#octavos_3");
+
+        var ganadores_gc = _.slice((_.sortBy(dict_puntajes_grupoC, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        var ganadores_gd = _.slice((_.sortBy(dict_puntajes_grupoD, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        armar_llaves(json_8vos, ganadores_gc[1], ganadores_gd[0], "#octavos_2");
+        armar_llaves(json_8vos, ganadores_gd[1], ganadores_gc[0], "#octavos_4");
+
+        var ganadores_ge = _.slice((_.sortBy(dict_puntajes_grupoE, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        var ganadores_gf = _.slice((_.sortBy(dict_puntajes_grupoF, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        armar_llaves(json_8vos, ganadores_ge[1], ganadores_gf[0], "#octavos_5");
+        armar_llaves(json_8vos, ganadores_gf[1], ganadores_ge[0], "#octavos_7");
+
+        var ganadores_gg = _.slice((_.sortBy(dict_puntajes_grupoC, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        var ganadores_gh = _.slice((_.sortBy(dict_puntajes_grupoD, ['puntos','goles_a_favor','goles_en_contra','dif_gol'])),2);
+        armar_llaves(json_8vos, ganadores_gg[1], ganadores_gh[0], "#octavos_6");
+        armar_llaves(json_8vos, ganadores_gh[1], ganadores_gg[0], "#octavos_8");
+
 
       }
 
@@ -86,7 +101,6 @@
         } else if (goles_a_favor == goles_en_contra) {
           dict_puntajes_grupo[equipo].puntos = dict_puntajes_grupo[equipo].puntos + 1;
         }
-
       }
 
       function calcular_puntos(json, grupo, fechas, nro_partidos, dict_puntajes_grupo){
@@ -103,9 +117,7 @@
               actualizar_tabla(goles_eq_2, goles_eq_1, f.equipo_2, dict_puntajes_grupo);
 
             });
-
           }
-
       }
 
       //puntajes por cada equipo
@@ -287,7 +299,7 @@
 
     <h1 align="center">Fixture Mundial Rusia-2018</h1>
 
-    <div class="row"  style="padding-left:2%; padding-right:2%;">
+    <div class="row"  style="padding-left:1; padding-right:1%;">
 
       <div class="col-sm-3">
 
@@ -455,7 +467,7 @@
 
     </div>
 
-    <div class="row"  style="padding-left:2%; padding-right:2%;">
+    <div class="row"  style="padding-left:1%; padding-right:1%;">
 
       <div class="col-sm-3">
 
@@ -633,9 +645,9 @@
 
     <br>
 
-    <div class="row"  style="padding-left:2%; padding-right:2%;">
+    <div class="row"  style="padding-left:1%; padding-right:1%;">
 
-      <div class="col-sm-3">
+      <div class="col-sm-12">
 
         <div class="card">
 
@@ -645,19 +657,74 @@
 
           <div class="card-body">
 
-            <div class="card">
-              <label style="text-align:center;">LLAVE 1</label>
+            <div class="row">
 
-              <form method="get" style="text-align:center;">
-                <label id="octavos_1"></label>
-              </form>
+              <div class="col-sm-3">
 
-              <form method="get" style="text-align:center;">
-                <label id="octavos_3"></label>
-              </form>
+                <div class="card">
+                  <label style="text-align:center;">LLAVE 1</label>
+
+                  <form method="get" style="text-align:center;">
+                    <label id="octavos_1"></label>
+                  </form>
+
+                  <form method="get" style="text-align:center;">
+                    <label id="octavos_2"></label>
+                  </form>
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+
+                <div class="card">
+                  <label style="text-align:center;">LLAVE 2</label>
+
+                  <form method="get" style="text-align:center;">
+                    <label id="octavos_3"></label>
+                  </form>
+
+                  <form method="get" style="text-align:center;">
+                    <label id="octavos_4"></label>
+                  </form>
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+
+                <div class="card">
+                  <label style="text-align:center;">LLAVE 3</label>
+
+                  <form method="get" style="text-align:center;">
+                    <label id="octavos_5"></label>
+                  </form>
+
+                  <form method="get" style="text-align:center;">
+                    <label id="octavos_6"></label>
+                  </form>
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+
+                <div class="card">
+                  <label style="text-align:center;">LLAVE 4</label>
+
+                  <form method="get" style="text-align:center;">
+                    <label id="octavos_7"></label>
+                  </form>
+
+                  <form method="get" style="text-align:center;">
+                    <label id="octavos_8"></label>
+                  </form>
+
+                </div>
+
+              </div>
+
             </div>
-
-            <br>
 
           </div>
 

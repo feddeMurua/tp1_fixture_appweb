@@ -11,6 +11,26 @@
     "#octavos_3":
     [
       {"equipo_1": "1B","equipo_2": "2A","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"01/07", "hora":"11:00"}
+    ],
+    "#octavos_4":
+    [
+      {"equipo_1": "1D","equipo_2": "2C","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"01/07", "hora":"15:00"}
+    ],
+    "#octavos_5":
+    [
+      {"equipo_1": "1E","equipo_2": "2F","estadio":"Samara Arena", "ciudad":"Samara","fecha":"02/07", "hora":"11:00"}
+    ],
+    "#octavos_6":
+    [
+      {"equipo_1": "1G","equipo_2": "2H","estadio":"Rostov Arena", "ciudad":"Rostov del Don","fecha":"02/07", "hora":"15:00"}
+    ],
+    "#octavos_7":
+    [
+      {"equipo_1": "1F","equipo_2": "2E","estadio":"Zenit Arena", "ciudad":"San Petersburgo","fecha":"03/07", "hora":"11:00"}
+    ],
+    "#octavos_8":
+    [
+      {"equipo_1": "1H","equipo_2": "2G","estadio":"Otkrytie Arena", "ciudad":"Moscú","fecha":"03/07", "hora":"15:00"}
     ]
   }
 }
