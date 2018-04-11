@@ -7,17 +7,18 @@ function armar_llaves(json, ganadores_grupo_1, ganadores_grupo_2, llave) {
           var equipo_1 = "<label>" + f.equipo_1.replace(f.equipo_1, ganadores_grupo_1.nombre) + "</label>" ;
           var input_equipo_1 = "<input id='"+f.equipo_1+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>  ";
           var input_equipo_2 = "<input id='"+f.equipo_2+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>";
-          var equipo_2 = "<label>" + f.equipo_2.replace(f.equipo_2, ganadores_grupo_2.nombre) + "</label> <br>" ;
+          var equipo_2 = "<label>" + f.equipo_2.replace(f.equipo_2, ganadores_grupo_2.nombre) + "</label>" ;
           var fecha = "<label>" + f.fecha + "</label>";
           var estadio = "<label>" + f.estadio + "</label>";
           var ciudad = "<label>" + f.ciudad + "</label> ";
           var hora = "<label>" + f.hora + "</label> <br>";
           var nombreEquipo1 = "'../imagenes/"+name1+".png'";
           var nombreEquipo2 = "'../imagenes/"+name2+".png'";
-          var imgEquipo1 = "<img src="+nombreEquipo1+" width='38' height='30'/> <br>";
+          var imgEquipo1 = "<img src="+nombreEquipo1+" width='38' height='30'/>";
           var imgEquipo2 = "<img src="+nombreEquipo2+" width='38' height='30'/> <br>";
 
           $(imgEquipo1).appendTo(llave);
+          $(llave).append(" ");
           $(equipo_1).appendTo(llave);
           $(llave).append(" ");
           $(input_equipo_1).appendTo(llave);
