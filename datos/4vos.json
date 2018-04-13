@@ -1,0 +1,20 @@
+{
+  "partidos": {
+    "#cuartos_1":
+    [
+      {"equipo_1": "oct1","equipo_2": "oct2","estadio":"Estadio de Nizhni Nóvgorod", "ciudad":"Nizhni Nóvgorod","fecha":"06/07", "hora":"11:00"}
+    ],
+    "#cuartos_2":
+    [
+      {"equipo_1": "oct5","equipo_2": "oct6","estadio":"Kazán Arena", "ciudad":"Kazán","fecha":"06/07", "hora":"15:00"}
+    ],
+    "#cuartos_3":
+    [
+      {"equipo_1": "oct3","equipo_2": "oct4","estadio":"Estadio Fisht", "ciudad":"Sochi","fecha":"07/07", "hora":"11:00"}
+    ],
+    "#cuartos_4":
+    [
+      {"equipo_1": "oct7","equipo_2": "oct8","estadio":"Samara Arena", "ciudad":"Samara","fecha":"07/07", "hora":"15:00"}
+    ]
+  }
+}
