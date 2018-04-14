@@ -19,7 +19,6 @@ octavos - armar_llaves
 //equipo_clasificado
 function crear_clasificado(nombre_equipo) {
   return {nombre:nombre_equipo,
-          llave:''
         };
 }
 
@@ -33,6 +32,7 @@ function crear_partido_llave(nombre_llave) {
         };
 }
 
+//crea los cruces y asigna valores a los inputs
 function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave) {
 
   $.each(json["partidos"][llave], function(i, f) {
@@ -84,7 +84,7 @@ function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave) {
 }
 
 //resultado de la llave
-function calcular_resultados(list_partidos){
+function calcular_resultados(list_partidos, dict_partidos_llave){
 
   for (var j = 0; j < list_partidos.length; j++) {
 
@@ -100,8 +100,7 @@ function calcular_resultados(list_partidos){
       else {
         clasificado = crear_clasificado(list_partidos[j]["equipo_1"]);
       }
-      clasificado["llave"] = list_partidos[j]["nombre_llave"]
-      list_partidos_llave_4vos.push(clasificado);
+      dict_partidos_llave[list_partidos[j]["nombre_llave"]] = clasificado;
   }
 
 }
@@ -110,18 +109,10 @@ function calcular_resultados(list_partidos){
 
 function cuartos(json_4vos){
 
-  /*
-  posiciones correspondientes con la lista devuelta para armar las llaves correctas
-  02
-  46
-  13
-  57
-  */
-
-  armar_llaves(json_4vos, list_partidos_llave_4vos[0].nombre , list_partidos_llave_4vos[2].nombre, "#cuartos_1");
-  armar_llaves(json_4vos, list_partidos_llave_4vos[4].nombre , list_partidos_llave_4vos[6].nombre, "#cuartos_2");
-  armar_llaves(json_4vos, list_partidos_llave_4vos[1].nombre , list_partidos_llave_4vos[3].nombre, "#cuartos_3");
-  armar_llaves(json_4vos, list_partidos_llave_4vos[5].nombre , list_partidos_llave_4vos[7].nombre, "#cuartos_4");
+  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_1"].nombre , dict_partidos_llave_4vos["#octavos_2"].nombre, "#cuartos_1");
+  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_5"].nombre , dict_partidos_llave_4vos["#octavos_6"].nombre, "#cuartos_2");
+  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_3"].nombre , dict_partidos_llave_4vos["#octavos_4"].nombre, "#cuartos_3");
+  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_7"].nombre , dict_partidos_llave_4vos["#octavos_8"].nombre, "#cuartos_4");
 
 }
 
@@ -135,18 +126,16 @@ function generar_cuartos(){
 
 /* ***************************************** */
 
-
 function clasificacion_cuartos() {
 
   //deshabilitar boton 4vos
   document.getElementById("btn-cuartos").disabled = true;
 
-  calcular_resultados(list_partidos_llave_8vos);
+  calcular_resultados(list_partidos_llave_8vos, dict_partidos_llave_4vos);
 
   generar_cuartos();
 
 }
-
 
 /* **************** OCTAVOS **************** */
 
@@ -396,7 +385,7 @@ function init() {
 
     //Variables globales llaves
     list_partidos_llave_8vos = [];
-    list_partidos_llave_4vos = [];
+    dict_partidos_llave_4vos = {};
 
     $.getJSON(
       "../server.php", // Server URL
