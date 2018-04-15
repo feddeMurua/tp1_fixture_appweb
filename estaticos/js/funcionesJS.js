@@ -33,7 +33,7 @@ function crear_partido_llave(nombre_llave) {
 }
 
 //crea los cruces y asigna valores a los inputs
-function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave) {
+function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave, fase) {
 
   $.each(json["partidos"][llave], function(i, f) {
 
@@ -79,7 +79,12 @@ function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave) {
 
  });
 
- list_partidos_llave_8vos.push(partido_llave);
+ if (fase == '8vos') {
+    list_partidos_llave_8vos.push(partido_llave);
+ } else if (fase == '4tos') {
+   list_partidos_llave_4tos.push(partido_llave);
+ }
+
 
 }
 
@@ -105,14 +110,47 @@ function calcular_resultados(list_partidos, dict_partidos_llave){
 
 }
 
+
+/* **************** SEMIS **************** */
+
+function semis(json_semis){
+
+  armar_llaves(json_semis, dict_partidos_llave_semis["#cuartos_1"].nombre , dict_partidos_llave_semis["#cuartos_2"].nombre, "#semis_1", "4tos");
+  armar_llaves(json_semis, dict_partidos_llave_semis["#cuartos_3"].nombre , dict_partidos_llave_semis["#cuartos_4"].nombre, "#semis_2", "4tos");
+
+}
+
+function generar_semis(){
+  $.getJSON(
+    "../server.php", // Server URL
+    { fase: "semis" }, // Dato que se envia al servidor
+    semis
+  );
+}
+
+function clasificacion_semis() {
+
+  //deshabilitar boton semis
+  document.getElementById("btn-semis").disabled = true;
+
+  calcular_resultados(list_partidos_llave_4tos, dict_partidos_llave_semis);
+
+  generar_semis();
+
+}
+
+/* ***************************************** */
+
 /* **************** CUARTOS **************** */
 
 function cuartos(json_4vos){
 
-  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_1"].nombre , dict_partidos_llave_4vos["#octavos_2"].nombre, "#cuartos_1");
-  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_5"].nombre , dict_partidos_llave_4vos["#octavos_6"].nombre, "#cuartos_2");
-  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_3"].nombre , dict_partidos_llave_4vos["#octavos_4"].nombre, "#cuartos_3");
-  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_7"].nombre , dict_partidos_llave_4vos["#octavos_8"].nombre, "#cuartos_4");
+  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_1"].nombre , dict_partidos_llave_4vos["#octavos_2"].nombre, "#cuartos_1", "4tos");
+  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_5"].nombre , dict_partidos_llave_4vos["#octavos_6"].nombre, "#cuartos_2", "4tos");
+  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_3"].nombre , dict_partidos_llave_4vos["#octavos_4"].nombre, "#cuartos_3", "4tos");
+  armar_llaves(json_4vos, dict_partidos_llave_4vos["#octavos_7"].nombre , dict_partidos_llave_4vos["#octavos_8"].nombre, "#cuartos_4", "4tos");
+
+  document.getElementById("btn-semis").disabled = false; //habilitar boton de semis
 
 }
 
@@ -123,8 +161,6 @@ function generar_cuartos(){
     cuartos
   );
 }
-
-/* ***************************************** */
 
 function clasificacion_cuartos() {
 
@@ -137,6 +173,8 @@ function clasificacion_cuartos() {
 
 }
 
+/* ***************************************** */
+
 /* **************** OCTAVOS **************** */
 
 function octavos(json_8vos){
@@ -144,23 +182,23 @@ function octavos(json_8vos){
   //funcion lodash para trabajar los diccionarios
   var ganadores_ga = _.slice((_.sortBy(dict_puntajes_grupoA, ['puntos','dif_gol','goles_a_favor','goles_en_contra'])),2); // slice toma las ultimas dos posiciones, pos 0: segundo en la tabla
   var ganadores_gb = _.slice((_.sortBy(dict_puntajes_grupoB, ['puntos','dif_gol','goles_a_favor','goles_en_contra'])),2);
-  armar_llaves(json_8vos, ganadores_ga[1].nombre, ganadores_gb[0].nombre, "#octavos_1");
-  armar_llaves(json_8vos, ganadores_gb[1].nombre, ganadores_ga[0].nombre, "#octavos_3");
+  armar_llaves(json_8vos, ganadores_ga[1].nombre, ganadores_gb[0].nombre, "#octavos_1", "8vos");
+  armar_llaves(json_8vos, ganadores_gb[1].nombre, ganadores_ga[0].nombre, "#octavos_3", "8vos");
 
   var ganadores_gc = _.slice((_.sortBy(dict_puntajes_grupoC, ['puntos','dif_gol','goles_a_favor','goles_en_contra'])),2);
   var ganadores_gd = _.slice((_.sortBy(dict_puntajes_grupoD, ['puntos','dif_gol','goles_a_favor','goles_en_contra'])),2);
-  armar_llaves(json_8vos, ganadores_gc[1].nombre, ganadores_gd[0].nombre, "#octavos_2");
-  armar_llaves(json_8vos, ganadores_gd[1].nombre, ganadores_gc[0].nombre, "#octavos_4");
+  armar_llaves(json_8vos, ganadores_gc[1].nombre, ganadores_gd[0].nombre, "#octavos_2", "8vos");
+  armar_llaves(json_8vos, ganadores_gd[1].nombre, ganadores_gc[0].nombre, "#octavos_4", "8vos");
 
   var ganadores_ge = _.slice((_.sortBy(dict_puntajes_grupoE, ['puntos','dif_gol','goles_a_favor','goles_en_contra'])),2);
   var ganadores_gf = _.slice((_.sortBy(dict_puntajes_grupoF, ['puntos','dif_gol','goles_a_favor','goles_en_contra'])),2);
-  armar_llaves(json_8vos, ganadores_ge[1].nombre, ganadores_gf[0].nombre, "#octavos_5");
-  armar_llaves(json_8vos, ganadores_gf[1].nombre, ganadores_ge[0].nombre, "#octavos_7");
+  armar_llaves(json_8vos, ganadores_ge[1].nombre, ganadores_gf[0].nombre, "#octavos_5", "8vos");
+  armar_llaves(json_8vos, ganadores_gf[1].nombre, ganadores_ge[0].nombre, "#octavos_7", "8vos");
 
   var ganadores_gg = _.slice((_.sortBy(dict_puntajes_grupoG, ['puntos','dif_gol','goles_a_favor','goles_en_contra'])),2);
   var ganadores_gh = _.slice((_.sortBy(dict_puntajes_grupoH, ['puntos','dif_gol','goles_a_favor','goles_en_contra'])),2);
-  armar_llaves(json_8vos, ganadores_gg[1].nombre, ganadores_gh[0].nombre, "#octavos_6");
-  armar_llaves(json_8vos, ganadores_gh[1].nombre, ganadores_gg[0].nombre, "#octavos_8");
+  armar_llaves(json_8vos, ganadores_gg[1].nombre, ganadores_gh[0].nombre, "#octavos_6", "8vos");
+  armar_llaves(json_8vos, ganadores_gh[1].nombre, ganadores_gg[0].nombre, "#octavos_8", "8vos");
 
   document.getElementById("btn-cuartos").disabled = false; //habilitar boton de 4tos
 
@@ -386,6 +424,9 @@ function init() {
     //Variables globales llaves
     list_partidos_llave_8vos = [];
     dict_partidos_llave_4vos = {};
+
+    list_partidos_llave_4tos = [];
+    dict_partidos_llave_semis = {};
 
     $.getJSON(
       "../server.php", // Server URL

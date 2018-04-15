@@ -1,0 +1,12 @@
+{
+  "partidos": {
+    "#semis_1":
+    [
+      {"equipo_1": "#cuartos_1","equipo_2": "#cuartos_2","estadio":"Zenit Arena", "ciudad":"San Petersburgo","fecha":"10/07", "hora":"15:00"}
+    ],
+    "#semis_2":
+    [
+      {"equipo_1": "#cuartos_3","equipo_2": "#cuartos_4","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"11/07", "hora":"15:00"}
+    ]
+  }
+}
