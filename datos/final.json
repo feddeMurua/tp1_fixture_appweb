@@ -1,0 +1,12 @@
+{
+  "partidos": {
+    "#final_1":
+    [
+      {"equipo_1": "#semis_1","equipo_2": "#semis_2","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"15/07", "hora":"15:00"}
+    ],
+    "#tercer_puesto":
+    [
+      {"equipo_1": "#perdedor_1","equipo_2": "#perdedor_2","estadio":"Zenit Arena", "ciudad":"San Petersburgo","fecha":"14/07", "hora":"11:00"}
+    ]
+  }
+}

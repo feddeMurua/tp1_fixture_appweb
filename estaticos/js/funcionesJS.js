@@ -83,6 +83,8 @@ function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave, fase) {
     list_partidos_llave_8vos.push(partido_llave);
  } else if (fase == '4tos') {
    list_partidos_llave_4tos.push(partido_llave);
+ } else if (fase == 'semis') {
+   list_partidos_llave_semis.push(partido_llave);
  }
 
 
@@ -110,13 +112,44 @@ function calcular_resultados(list_partidos, dict_partidos_llave){
 
 }
 
+/* **************** FINAL **************** */
+
+function final(json_final){
+
+  armar_llaves(json_final, dict_partidos_llave_final["#semis_1"].nombre , dict_partidos_llave_final["#semis_2"].nombre, "#final_1", "semis");
+
+}
+
+function generar_final(){
+  $.getJSON(
+    "../server.php", // Server URL
+    { fase: "final" }, // Dato que se envia al servidor
+    final
+  );
+}
+
+function clasificacion_final() {
+
+  //deshabilitar boton semis
+  document.getElementById("btn-final").disabled = true;
+
+
+  calcular_resultados(list_partidos_llave_semis, dict_partidos_llave_final);
+
+  generar_final();
+
+}
+
+/* ***************************************** */
 
 /* **************** SEMIS **************** */
 
 function semis(json_semis){
 
-  armar_llaves(json_semis, dict_partidos_llave_semis["#cuartos_1"].nombre , dict_partidos_llave_semis["#cuartos_2"].nombre, "#semis_1", "4tos");
-  armar_llaves(json_semis, dict_partidos_llave_semis["#cuartos_3"].nombre , dict_partidos_llave_semis["#cuartos_4"].nombre, "#semis_2", "4tos");
+  armar_llaves(json_semis, dict_partidos_llave_semis["#cuartos_1"].nombre , dict_partidos_llave_semis["#cuartos_2"].nombre, "#semis_1", "semis");
+  armar_llaves(json_semis, dict_partidos_llave_semis["#cuartos_3"].nombre , dict_partidos_llave_semis["#cuartos_4"].nombre, "#semis_2", "semis");
+
+  document.getElementById("btn-final").disabled = false; //habilitar boton de final
 
 }
 
@@ -427,6 +460,9 @@ function init() {
 
     list_partidos_llave_4tos = [];
     dict_partidos_llave_semis = {};
+
+    list_partidos_llave_semis = [];
+    dict_partidos_llave_final = {};
 
     $.getJSON(
       "../server.php", // Server URL

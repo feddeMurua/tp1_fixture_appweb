@@ -12,5 +12,8 @@
     echo json_encode(json_decode(file_get_contents("datos/4vos.json"), true));
   } elseif ($fase == "semis") {
     echo json_encode(json_decode(file_get_contents("datos/semis.json"), true));
+  } elseif ($fase == "final") {
+    echo json_encode(json_decode(file_get_contents("datos/final.json"), true));
   }
+
 ?>
