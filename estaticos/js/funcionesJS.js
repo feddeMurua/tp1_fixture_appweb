@@ -32,44 +32,36 @@ function crear_partido_llave(nombre_llave) {
         };
 }
 
+//<th style='text-align: left; font-size:80%;' colspan='4'>Argentina</th>\
+
 //crea los cruces y asigna valores a los inputs
 function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave, fase) {
 
   $.each(json["partidos"][llave], function(i, f) {
 
-    var nombre_equipo1 = f.equipo_1.replace(f.equipo_1, ganador_grupo_1);
-    var nombre_equipo2 = f.equipo_2.replace(f.equipo_2, ganador_grupo_2);
-    var equipo_1 = "<label id='"+f.equipo_1+"'>" + nombre_equipo1 + "</label>" ;
-    var input_equipo_1 = "<input id='"+f.equipo_1+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>  ";
-    var input_equipo_2 = "<input id='"+f.equipo_2+"_"+f.fecha+"' type='number' min='0' style='width:12%; text-align:center;'/>";
-    var equipo_2 = "<label id='"+f.equipo_2+"'>" + nombre_equipo2 + "</label>" ;
-    var fecha = "<label>" + f.fecha + "</label>";
-    var estadio = "<label>" + f.estadio + "</label>";
-    var ciudad = "<label>" + f.ciudad + "</label> ";
-    var hora = "<label>" + f.hora + "</label> <br>";
-    var nombreEquipo1 = "'../imagenes/"+nombre_equipo1+".png'";
-    var nombreEquipo2 = "'../imagenes/"+nombre_equipo2+".png'";
-    var imgEquipo1 = "<img src="+nombreEquipo1+" width='38' height='30'/>";
-    var imgEquipo2 = "<img src="+nombreEquipo2+" width='38' height='30'/> <br>";
+     nombre_equipo1 = f.equipo_1.replace(f.equipo_1, ganador_grupo_1);
+     nombre_equipo2 = f.equipo_2.replace(f.equipo_2, ganador_grupo_2);
 
-    $(imgEquipo1).appendTo(llave);
-    $(llave).append(" ");
-    $(equipo_1).appendTo(llave);
-    $(llave).append(" ");
-    $(input_equipo_1).appendTo(llave);
-    $(llave).append(" ");
-    $(input_equipo_2).appendTo(llave);
-    $(llave).append(" ");
-    $(equipo_2).appendTo(llave);
-    $(llave).append(" ");
-    $(imgEquipo2).appendTo(llave);
-    $(fecha).appendTo(llave);
-    $(llave).append(" | ");
-    $(estadio).appendTo(llave);
-    $(llave).append(" | ");
-    $(ciudad).appendTo(llave);
-    $(llave).append(" | ");
-    $(hora).appendTo(llave);
+     nombreEquipo1 = "'../imagenes/"+nombre_equipo1+".png'";
+     nombreEquipo2 = "'../imagenes/"+nombre_equipo2+".png'";
+
+     tabla = "<table style='border:none;' cellspacing='0' cellpadding='0' > " ;
+     cuerpo_tabla =" <tr > \
+                        <td style='text-align: left; padding-top:5;' colspan='3'> <img src="+nombreEquipo1+" width='38' height='30'/> <label id='"+f.equipo_1+"'>" + nombre_equipo1 + "</label></td> \
+                        <td style='text-align: center; padding-top:5' colspan='2'> <input id='"+f.equipo_1+"_"+f.fecha+"' type='number' min='0' style='width:45%; text-align:center;'/> </td> \
+                        <td style='text-align: center; padding-top:5' colspan='2'> <input id='"+f.equipo_2+"_"+f.fecha+"' type='number' min='0' style='width:45%; text-align:center;'/> </td> \
+                        <td style='text-align: right; padding-top:5' colspan='4'><label id='"+f.equipo_2+"'>" + nombre_equipo2 + "</label> <img src="+nombreEquipo2+" width='38' height='30'/> </td> \
+                        </tr>\
+                        <tr> \
+                          <td style='text-align: left;' colspan='1'>" + f.fecha + "</td>\
+                          <td style='text-align: center;' colspan='8'>" + f.estadio + "</td>\
+                          <td style='text-align: left;' colspan='2'>" + f.ciudad + "</td>\
+                          <td style='text-align: left;' colspan='1'>" + f.hora + "</td>\
+                        </tr>\
+                        </table>";
+
+    $(tabla).appendTo(llave);
+    $(cuerpo_tabla).appendTo(llave);
 
     partido_llave = crear_partido_llave(llave);
     partido_llave["equipo_1"] = ganador_grupo_1;
