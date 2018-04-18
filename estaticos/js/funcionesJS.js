@@ -32,11 +32,11 @@ function crear_partido_llave(nombre_llave) {
         };
 }
 
-//<th style='text-align: left; font-size:80%;' colspan='4'>Argentina</th>\
-
 //crea los cruces y asigna valores a los inputs
 function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave, fase) {
-
+  /*
+  param: json, equipo_1, equipo_2, id form client, fase
+  */
   $.each(json["partidos"][llave], function(i, f) {
 
      nombre_equipo1 = f.equipo_1.replace(f.equipo_1, ganador_grupo_1);
@@ -77,6 +77,8 @@ function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave, fase) {
    list_partidos_llave_4tos.push(partido_llave);
  } else if (fase == 'semis') {
    list_partidos_llave_semis.push(partido_llave);
+ } else if (fase == 'final') {
+   list_partidos_llave_final.push(partido_llave);
  }
 
 
@@ -92,12 +94,15 @@ function calcular_resultados(list_partidos, dict_partidos_llave){
 
       if (goles_eq_1 > goles_eq_2){
         clasificado = crear_clasificado(list_partidos[j]["equipo_1"]);
+        if (true) {
+
+        }
       }
       else if (goles_eq_2 > goles_eq_1) {
         clasificado = crear_clasificado(list_partidos[j]["equipo_2"]);
       }
       else {
-        clasificado = crear_clasificado(list_partidos[j]["equipo_1"]);
+        clasificado = crear_clasificado(list_partidos[j]["equipo_1"]); // en caso de empate para que no pinche.
       }
       dict_partidos_llave[list_partidos[j]["nombre_llave"]] = clasificado;
   }
@@ -108,7 +113,29 @@ function calcular_resultados(list_partidos, dict_partidos_llave){
 
 function final(json_final){
 
-  armar_llaves(json_final, dict_partidos_llave_final["#semis_1"].nombre , dict_partidos_llave_final["#semis_2"].nombre, "#final_1", "semis");
+  armar_llaves(json_final, dict_partidos_llave_final["#semis_1"].nombre , dict_partidos_llave_final["#semis_2"].nombre, "#final_1", "final");
+
+  /*
+  semis_1 : ganador de cuartos 1 y  cuartos 2
+  semis_2 : ganador de cuartos 3 y  cuartos 4
+  */
+
+  var perdedor_semi_1 ;
+  var perdedor_semi_2 ;
+
+  if (dict_partidos_llave_semis["#cuartos_1"].nombre != dict_partidos_llave_final["#semis_1"].nombre){
+    perdedor_semi_1 = dict_partidos_llave_semis["#cuartos_1"].nombre
+  } else {
+    perdedor_semi_1 = dict_partidos_llave_semis["#cuartos_2"].nombre
+  }
+
+  if (dict_partidos_llave_semis["#cuartos_3"].nombre != dict_partidos_llave_final["#semis_2"].nombre){
+    perdedor_semi_2 = dict_partidos_llave_semis["#cuartos_3"].nombre
+  } else {
+    perdedor_semi_2 = dict_partidos_llave_semis["#cuartos_4"].nombre
+  }
+
+  armar_llaves(json_final, perdedor_semi_1 , perdedor_semi_2, "#tercer_puesto", "final");
 
 }
 
@@ -455,6 +482,10 @@ function init() {
 
     list_partidos_llave_semis = [];
     dict_partidos_llave_final = {};
+
+    list_partidos_llave_final = [];
+    dict_partidos_llave_final = {};
+
 
     $.getJSON(
       "../server.php", // Server URL

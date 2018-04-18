@@ -6,7 +6,7 @@
     ],
     "#tercer_puesto":
     [
-      {"equipo_1": "#perdedor_1","equipo_2": "#perdedor_2","estadio":"Zenit Arena", "ciudad":"San Petersburgo","fecha":"14/07", "hora":"11:00"}
+      {"equipo_1": "#perdedor_semi_1","equipo_2": "#perdedor_semi_2","estadio":"Zenit Arena", "ciudad":"San Petersburgo","fecha":"14/07", "hora":"11:00"}
     ]
   }
 }
