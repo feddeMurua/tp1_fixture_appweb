@@ -471,8 +471,8 @@ function datos(json) {
 }
 
 //fase de grupos
-function init() {
-
+function inicializar() {
+    
     //Variables globales llaves
     list_partidos_llave_8vos = [];
     dict_partidos_llave_4vos = {};
@@ -486,7 +486,6 @@ function init() {
     list_partidos_llave_final = [];
     dict_partidos_llave_final = {};
 
-
     $.getJSON(
       "../server.php", // Server URL
       { fase: "grupos" }, // Dato que se envia al servidor
@@ -495,4 +494,5 @@ function init() {
 }
 
 // run AJAX query cuando carga la página.
-window.onload=init;
+
+//window.onload=init;
