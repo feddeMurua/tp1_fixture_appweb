@@ -63,8 +63,8 @@
 
     <!-- About Section -->
     <section id="about" class="content-section text-center">
+      <label id="inicio"> </label>
       <div class="row"  style="padding-left:1%; padding-right:1%;">
-
         <div class="col-sm-12">
           <div class="card bg-dark text-white">
             <div class="card-header" style="text-align:center;">
@@ -112,428 +112,64 @@
             </div>
           </div>
         </div>
-
       </div>
+
+      <div class="text-center">
+        <button onclick="insert_equipos()" type="button" id="btn-octavos"> Cargar Grupos</button>
+      </div>
+
+      <script type="text/javascript">
+
+        function insert_equipos(){
+
+          // lista de objetos
+          dict_datos = [  {"nombre":"Grupo A", "partidos":["partido_1_ga","partido_2_ga","partido_3_ga"], "llaves":["FECHA 1","FECHA 2","FECHA 3"]},
+                          {"nombre":"Grupo B", "partidos":["partido_1_gb","partido_2_gb","partido_3_gb"], "llaves":["FECHA 1","FECHA 2","FECHA 3"]},
+                          {"nombre":"Grupo C", "partidos":["partido_1_gc","partido_2_gc","partido_3_gc"], "llaves":["FECHA 1","FECHA 2","FECHA 3"]},
+                          {"nombre":"Grupo D", "partidos":["partido_1_gd","partido_2_gd","partido_3_gd"], "llaves":["FECHA 1","FECHA 2","FECHA 3"]},
+                          {"nombre":"Grupo F", "partidos":["partido_1_gf","partido_2_gf","partido_3_gf"], "llaves":["FECHA 1","FECHA 2","FECHA 3"]},
+                          {"nombre":"Grupo E", "partidos":["partido_1_ge","partido_2_ge","partido_3_ge"], "llaves":["FECHA 1","FECHA 2","FECHA 3"]},
+                          {"nombre":"Grupo G", "partidos":["partido_1_gg","partido_2_gg","partido_3_gg"], "llaves":["FECHA 1","FECHA 2","FECHA 3"]},
+                          {"nombre":"Grupo H", "partidos":["partido_1_gh","partido_2_gh","partido_3_gh"], "llaves":["FECHA 1","FECHA 2","FECHA 3"]},
+                          {"nombre":"OCTAVOS DE FINAL", "partidos":["octavos_1","octavos_2","octavos_3","octavos_4","octavos_5","octavos_6","octavos_7","octavos_8"], "llaves":["LLAVE 1","LLAVE 2","LLAVE 3","LLAVE 4"]},
+                          {"nombre":"CUARTOS DE FINAL", "partidos":["cuartos_1","cuartos_2","cuartos_3", "cuartos_4"], "llaves":["LLAVE 1","LLAVE 2"]},
+                          {"nombre":"SEMIFINAL", "partidos":["semis_1","semis_2"], "llaves":["LLAVE"]},
+                          {"nombre":"3° PUESTO", "partidos":["tercer_puesto"], "llaves":["LLAVE"]},
+                          {"nombre":"FINAL", "partidos":["final_1"], "llaves":["LLAVE FINAL"]}
+
+                       ];
+
+          //13 "divs"
+
+          for(i=0;i<12;i++)
+      		{
+
+      			$( "<div class='row'  style='padding-left:1%; padding-right:1%;'> \
+                  <div class='col-sm-12'>\
+                    <div class='card bg-dark text-white'>\
+                      <div class='card-header' style='text-align:center;'>\
+                        " + dict_datos[i].nombre + "\
+                      </div>\
+
+
+
+                    </div>\
+                  </div>\
+                </div>\
+                        ").insertAfter( "#inicio");
+
+      		}
+
+
+
+        }
+
+      </script>
 
       <br>
-
-      <div class="col-sm-12">
-        <div class="card bg-dark text-white">
-          <div class="card-header" style="text-align:center;">
-            GRUPO B
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="card text-white bg-secondary mb-3">
-                      <label style="text-align:center;">FECHA 1</label>
-                      <form method="get" style="text-align:center;">
-                        <label id="partido_1_gb"> </label>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="card text-white bg-secondary mb-3">
-                      <label style="text-align:center;">FECHA 2</label>
-                      <form method="get" style="text-align:center;">
-                        <label id="partido_2_gb"> </label>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="card text-white bg-secondary mb-3">
-                      <label style="text-align:center;">FECHA 3</label>
-                      <form method="get" style="text-align:center;">
-                        <label id="partido_3_gb"> </label>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-
-    <br>
-
-    <div class="col-sm-12">
-      <div class="card bg-dark text-white">
-        <div class="card-header" style="text-align:center;">
-          GRUPO C
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">FECHA 1</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="partido_1_gc"> </label>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">FECHA 2</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="partido_2_gc"> </label>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">FECHA 3</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="partido_3_gc"> </label>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <br>
-
-    <div class="col-sm-12">
-    <div class="card bg-dark text-white">
-      <div class="card-header" style="text-align:center;">
-        GRUPO D
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="card text-white bg-secondary mb-3">
-                  <label style="text-align:center;">FECHA 1</label>
-                  <form method="get" style="text-align:center;">
-                    <label id="partido_1_gd"> </label>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="card text-white bg-secondary mb-3">
-                  <label style="text-align:center;">FECHA 2</label>
-                  <form method="get" style="text-align:center;">
-                    <label id="partido_2_gd"> </label>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="card text-white bg-secondary mb-3">
-                  <label style="text-align:center;">FECHA 3</label>
-                  <form method="get" style="text-align:center;">
-                    <label id="partido_3_gd"> </label>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    </div>
-
-    <br>
-
-    <div class="col-sm-12">
-  <div class="card bg-dark text-white">
-    <div class="card-header" style="text-align:center;">
-      GRUPO E
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 1</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_1_ge"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 2</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_2_ge"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 3</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_3_ge"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    </div>
-
-    <br>
-
-    <div class="col-sm-12">
-  <div class="card bg-dark text-white">
-    <div class="card-header" style="text-align:center;">
-      GRUPO F
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 1</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_1_gf"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 2</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_2_gf"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 3</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_3_gf"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    </div>
-
-    <br>
-
-    <div class="col-sm-12">
-  <div class="card bg-dark text-white">
-    <div class="card-header" style="text-align:center;">
-      GRUPO G
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 1</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_1_gg"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 2</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_2_gg"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 3</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_3_gg"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    </div>
-
-    <br>
-
-    <div class="col-sm-12">
-  <div class="card bg-dark text-white">
-    <div class="card-header" style="text-align:center;">
-      GRUPO H
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 1</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_1_gh"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 2</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_2_gh"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-white bg-secondary mb-3">
-                <label style="text-align:center;">FECHA 3</label>
-                <form method="get" style="text-align:center;">
-                  <label id="partido_3_gh"> </label>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    </div>
 
       <div class="text-center">
         <button onclick="clasificacion_equipos()" type="button" id="btn-octavos"> Cargar 8vos</button>
-      </div>
-      <br>
-      <div class="row"  style="padding-left:1%; padding-right:1%;">
-        <div class="col-sm-12">
-          <div class="card">
-            <div class="card-header" style="text-align:center;">
-              OCTAVOS
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">LLAVE 1</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="octavos_1"></label>
-                    </form>
-                    <form method="get" style="text-align:center;">
-                      <label id="octavos_2"></label>
-                    </form>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">LLAVE 2</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="octavos_3"></label>
-                    </form>
-                    <form method="get" style="text-align:center;">
-                      <label id="octavos_4"></label>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">LLAVE 3</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="octavos_5"></label>
-                    </form>
-                    <form method="get" style="text-align:center;">
-                      <label id="octavos_6"></label>
-                    </form>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">LLAVE 4</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="octavos_7"></label>
-                    </form>
-                    <form method="get" style="text-align:center;">
-                      <label id="octavos_8"></label>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <br>
@@ -541,72 +177,11 @@
       <div class="text-center">
         <button onclick="clasificacion_cuartos()" type="button" id="btn-cuartos" disabled> Cargar 4vos</button>
       </div>
-      <br>
-      <div class="row"  style="padding-left:1%; padding-right:1%;">
-        <div class="col-sm-12">
-          <div class="card">
-            <div class="card-header" style="text-align:center;">
-              CUARTOS
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">LLAVE 1</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="cuartos_1"></label>
-                    </form>
-                    <form method="get" style="text-align:center;">
-                      <label id="cuartos_2"></label>
-                    </form>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">LLAVE 2</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="cuartos_3"></label>
-                    </form>
-                    <form method="get" style="text-align:center;">
-                      <label id="cuartos_4"></label>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <br>
 
       <div class="text-center">
         <button onclick="clasificacion_semis()" type="button" id="btn-semis" disabled> Cargar Semis</button>
-      </div>
-      <br>
-      <div class="row"  style="padding-left:1%; padding-right:1%;">
-        <div class="col-sm-12">
-          <div class="card">
-            <div class="card-header" style="text-align:center;">
-              SEMIS
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">LLAVES</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="semis_1"></label>
-                    </form>
-                    <form method="get" style="text-align:center;">
-                      <label id="semis_2"></label>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <br>
@@ -615,35 +190,7 @@
         <button onclick="clasificacion_final()" type="button" id="btn-final" disabled> Cargar Final</button>
       </div>
       <br>
-      <div class="row"  style="padding-left:1%; padding-right:1%;">
-        <div class="col-sm-12">
-          <div class="card">
-            <div class="card-header" style="text-align:center;">
-              FINAL
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">LLAVE 3° PUESTO</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="tercer_puesto"></label>
-                    </form>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="card text-white bg-secondary mb-3">
-                    <label style="text-align:center;">LLAVE FINAL</label>
-                    <form method="get" style="text-align:center;">
-                      <label id="final_1"></label>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </section>
 
     <!-- Footer -->
