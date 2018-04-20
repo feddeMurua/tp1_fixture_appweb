@@ -119,9 +119,6 @@ function devolver_campeon(){
 
 function campeon() {
 
-  //deshabilitar boton final
-  document.getElementById("btn-final").disabled = true;
-
   calcular_resultados(list_partidos_llave_final, dict_partidos_llave_campeon);
 
   document.getElementById("myImg").style.display = "block";
@@ -171,6 +168,9 @@ function clasificacion_final() {
 
  //generar_final();
   generar_fase("final",final);
+
+  //deshabilitar boton final
+  document.getElementById("btn-final").disabled = true;
 
 
 }
@@ -263,7 +263,7 @@ function octavos(json_8vos){
 
 function generar_fase(serie,funcion){
   $.getJSON(
-    
+
     "../server.php", // Server URL
     { fase: serie}, // Dato que se envia al servidor
     funcion
@@ -420,7 +420,7 @@ function recorrer_grupo(json, grupo, fechas, nro_partidos) {
       var nombreEquipo2 = "'../imagenes/"+f.equipo_2+".png'";
       var equipo_1 = "<label>" + f.equipo_1 + "</label>" ;
       var equipo_2 = "<label>" + f.equipo_2 + "</label> " ;
-     
+
 
       tabla = "<table class = 'a'; style='border:none;' cellspacing='0' cellpadding='0' > " ;
       cuerpo_tabla =" <tr > \
@@ -439,7 +439,7 @@ function recorrer_grupo(json, grupo, fechas, nro_partidos) {
 
       $(tabla).appendTo(nro_partidos[k]);
       $(cuerpo_tabla).appendTo(nro_partidos[k]);
-      
+
 
    });
 
