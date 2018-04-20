@@ -15,8 +15,9 @@
 
     <!-- Custom fonts for this template -->
     <link href="../estaticos/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+    <link href="../estaticos/css/css_googleapis.css" rel="stylesheet" type="text/css">
+    <link href='../estaticos/css/css_googleapis2.css' rel='stylesheet' type='text/css'>
+    <link href='../estaticos/css/estilos_campeon.css' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="../estaticos/css/grayscale.min.css" rel="stylesheet">
@@ -28,30 +29,13 @@
 
   <body id="page-top">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Home</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
     <!-- Intro Header -->
     <header class="masthead">
       <div class="intro-body">
         <div class="container">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2>Fixure Mundial Rusia 2018</h2>
+              <h2>Fixture Mundial Rusia 2018</h2>
               <a href="#about" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
               </a>
@@ -63,81 +47,72 @@
 
     <!-- About Section -->
     <section id="about" class="content-section text-center">
-      <label id="inicio"> </label>
-      <br>
       <div class="text-center">
-        <button onclick="insert_equipos()" type="button" id="btn-octavos"> Cargar Grupos</button>
+        <button onclick="insert_equipos()" type="button" id="btn-grupos"> Cargar Grupos</button>
       </div>
+      <label id="inicio"> </label> <!-- PUNTO DE INICIO DE LOS DIV CREADOS DINAMICAMENTE -->
+      <label id='fin_div'> </label> <!-- PUNTO DE CIERRE DE LOS DIV CREADOS DINAMICAMENTE -->
 
       <script type="text/javascript">
 
         function insert_equipos(){
 
           // lista de objetos
-          list_datos = [  {nombre:"Grupo H", partidos:["partido_1_gh","partido_2_gh","partido_3_gh"], llaves:["FECHA 1","FECHA 2","FECHA 3"]},
-                          {nombre:"Grupo G", partidos:["partido_1_gg","partido_2_gg","partido_3_gg"], llaves:["FECHA 1","FECHA 2","FECHA 3"]},
-                          {nombre:"Grupo F", partidos:["partido_1_gf","partido_2_gf","partido_3_gf"], llaves:["FECHA 1","FECHA 2","FECHA 3"]},
-                          {nombre:"Grupo E", partidos:["partido_1_ge","partido_2_ge","partido_3_ge"], llaves:["FECHA 1","FECHA 2","FECHA 3"]},
-                          {nombre:"Grupo D", partidos:["partido_1_gd","partido_2_gd","partido_3_gd"], llaves:["FECHA 1","FECHA 2","FECHA 3"]},
-                          {nombre:"Grupo C", partidos:["partido_1_gc","partido_2_gc","partido_3_gc"], llaves:["FECHA 1","FECHA 2","FECHA 3"]},
-                          {nombre:"Grupo B", partidos:["partido_1_gb","partido_2_gb","partido_3_gb"], llaves:["FECHA 1","FECHA 2","FECHA 3"]},
-                          {nombre:"Grupo A", partidos:["partido_1_ga","partido_2_ga","partido_3_ga"], llaves:["FECHA 1","FECHA 2","FECHA 3"]},
+          list_datos = [  //{nombre:"OCTAVOS", partidos:["partido_1_gh","partido_2_gh","partido_3_gh"], llaves:["FECHA 3","FECHA 2","FECHA 1"]},
+                          {nombre:"Grupo H", partidos:["partido_1_gh","partido_2_gh","partido_3_gh"], llaves:["FECHA 3","FECHA 2","FECHA 1"]},
+                          {nombre:"Grupo G", partidos:["partido_1_gg","partido_2_gg","partido_3_gg"], llaves:["FECHA 3","FECHA 2","FECHA 1"]},
+                          {nombre:"Grupo F", partidos:["partido_1_gf","partido_2_gf","partido_3_gf"], llaves:["FECHA 3","FECHA 2","FECHA 1"]},
+                          {nombre:"Grupo E", partidos:["partido_1_ge","partido_2_ge","partido_3_ge"], llaves:["FECHA 3","FECHA 2","FECHA 1"]},
+                          {nombre:"Grupo D", partidos:["partido_1_gd","partido_2_gd","partido_3_gd"], llaves:["FECHA 3","FECHA 2","FECHA 1"]},
+                          {nombre:"Grupo C", partidos:["partido_1_gc","partido_2_gc","partido_3_gc"], llaves:["FECHA 3","FECHA 2","FECHA 1"]},
+                          {nombre:"Grupo B", partidos:["partido_1_gb","partido_2_gb","partido_3_gb"], llaves:["FECHA 3","FECHA 2","FECHA 1"]},
+                          {nombre:"Grupo A", partidos:["partido_1_ga","partido_2_ga","partido_3_ga"], llaves:["FECHA 3","FECHA 2","FECHA 1"]},
                        ];
 
           //13 "divs"
 
           list_datos.forEach(function(grupo) {
 
-          	$( "<div class='row'  style='padding-left:1%; padding-right:1%;'> \
+           $("  <div class='row'  style='padding-left:1%; padding-right:1%;'> \
                   <div class='col-sm-12'>\
                     <div class='card bg-dark text-white'>\
                       <div class='card-header' style='text-align:center;'>\
                         " + grupo.nombre + "\
                       </div>\
                       <div class='row'>\
-                        <div class='col-sm-4'>\
-                          <div class='card'>\
-                            <div class='card-body'>\
-                              <div class='card text-white bg-secondary mb-3'>\
-                                <label style='text-align:center;'>" + grupo.llaves[0] + "</label>\
-                                <form method='get' style='text-align:center;'>\
-                                  <label id='" + grupo.partidos[0] + "'> </label>\
-                                </form>\
-                              </div>\
-                            </div>\
-                          </div>\
-                        </div>\
-                        <div class='col-sm-4'>\
-                          <div class='card'>\
-                            <div class='card-body'>\
-                              <div class='card text-white bg-secondary mb-3'>\
-                                <label style='text-align:center;'>" + grupo.llaves[1] + "</label>\
-                                <form method='get' style='text-align:center;'>\
-                                  <label id='" + grupo.partidos[1] + "'> </label>\
-                                </form>\
-                              </div>\
-                            </div>\
-                          </div>\
-                        </div>\
-                        <div class='col-sm-4'>\
-                          <div class='card'>\
-                            <div class='card-body'>\
-                              <div class='card text-white bg-secondary mb-3'>\
-                                <label style='text-align:center;'>" + grupo.llaves[2] + "</label>\
-                                <form method='get' style='text-align:center;'>\
-                                  <label id='" + grupo.partidos[2] + "'> </label>\
-                                </form>\
-                              </div>\
-                            </div>\
+                        <label id='inicio_llaves'> </label>\
+                      ").insertAfter( "#inicio");
+
+            i=0;  //indice para escribir id del partido
+
+            grupo.llaves.forEach(function(llave) {
+
+              $("   <div class='col-sm-4'>\
+                      <div class='card'>\
+                        <div class='card-body'>\
+                          <div class='card text-white bg-secondary mb-3'>\
+                            <label style='text-align:center;'>"+ llave +"</label>\
+                            <form method='get' style='text-align:center;'>\
+                              <label id='" + grupo.partidos[i] + "'> </label>\
+                            </form>\
                           </div>\
                         </div>\
                       </div>\
                     </div>\
-                  </div>\
-                </div>\
-                        ").insertAfter( "#inicio");
+                            ").insertAfter("#inicio_llaves");
+                i++;
+
+            });
+
       		});
 
+          $( "   </div>\
+                </div>\
+              </div>\
+            </div>\
+                    ").insertAfter('#fin_div');
+
+          document.getElementById("btn-grupos").disabled = true; //habilitar boton de 4tos
           inicializar();
 
         }
@@ -152,8 +127,108 @@
 
       <br>
 
+      <div class="row"  style="padding-left:1%; padding-right:1%;">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header" style="text-align:center;">
+              OCTAVOS
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="card text-white bg-secondary mb-3">
+                    <label style="text-align:center;">LLAVE 1</label>
+                    <form method="get" style="text-align:center;">
+                      <label id="octavos_1"></label>
+                    </form>
+                    <form method="get" style="text-align:center;">
+                      <label id="octavos_2"></label>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card text-white bg-secondary mb-3">
+                    <label style="text-align:center;">LLAVE 2</label>
+                    <form method="get" style="text-align:center;">
+                      <label id="octavos_3"></label>
+                    </form>
+                    <form method="get" style="text-align:center;">
+                      <label id="octavos_4"></label>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="card text-white bg-secondary mb-3">
+                    <label style="text-align:center;">LLAVE 3</label>
+                    <form method="get" style="text-align:center;">
+                      <label id="octavos_5"></label>
+                    </form>
+                    <form method="get" style="text-align:center;">
+                      <label id="octavos_6"></label>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card text-white bg-secondary mb-3">
+                    <label style="text-align:center;">LLAVE 4</label>
+                    <form method="get" style="text-align:center;">
+                      <label id="octavos_7"></label>
+                    </form>
+                    <form method="get" style="text-align:center;">
+                      <label id="octavos_8"></label>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
       <div class="text-center">
         <button onclick="clasificacion_cuartos()" type="button" id="btn-cuartos" disabled> Cargar 4vos</button>
+      </div>
+
+      <br>
+
+      <div class="row"  style="padding-left:1%; padding-right:1%;">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header" style="text-align:center;">
+              CUARTOS
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="card text-white bg-secondary mb-3">
+                    <label style="text-align:center;">LLAVE 1</label>
+                    <form method="get" style="text-align:center;">
+                      <label id="cuartos_1"></label>
+                    </form>
+                    <form method="get" style="text-align:center;">
+                      <label id="cuartos_2"></label>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card text-white bg-secondary mb-3">
+                    <label style="text-align:center;">LLAVE 2</label>
+                    <form method="get" style="text-align:center;">
+                      <label id="cuartos_3"></label>
+                    </form>
+                    <form method="get" style="text-align:center;">
+                      <label id="cuartos_4"></label>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <br>
@@ -164,10 +239,112 @@
 
       <br>
 
+      <div class="row"  style="padding-left:1%; padding-right:1%;">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header" style="text-align:center;">
+              SEMIS
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="card text-white bg-secondary mb-3">
+                    <label style="text-align:center;">LLAVES</label>
+                    <form method="get" style="text-align:center;">
+                      <label id="semis_1"></label>
+                    </form>
+                    <form method="get" style="text-align:center;">
+                      <label id="semis_2"></label>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
       <div class="text-center">
         <button onclick="clasificacion_final()" type="button" id="btn-final" disabled> Cargar Final</button>
       </div>
+
       <br>
+
+      <div class="row"  style="padding-left:1%; padding-right:1%;">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header" style="text-align:center;">
+              FINAL
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="card text-white bg-secondary mb-3">
+                    <label style="text-align:center;">LLAVE 3° PUESTO</label>
+                    <form method="get" style="text-align:center;">
+                      <label id="tercer_puesto"></label>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card text-white bg-secondary mb-3">
+                    <label style="text-align:center;">LLAVE FINAL</label>
+                    <form method="get" style="text-align:center;">
+                      <label id="final_1"></label>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="text-center">
+        <button onclick="campeon()" type="button" id="btn-campeon" disabled> Mostrar Campeón</button>
+        <br>
+        <img id="myImg" src="../imagenes/Copa_del_Mundo.jpg" width="300" height="200" style="display:none">
+      </div>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <h1 id="caption"></h1>
+      </div>
+
+      <script>
+
+      // Get the modal
+      var modal = document.getElementById('myModal');
+
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+
+      var img = document.getElementById('myImg');
+      var modalImg = document.getElementById("img01");
+      var captionText = document.getElementById("caption");
+
+      img.onclick = function(){
+          modal.style.display = "block";
+          modalImg.src = this.src;
+          captionText.innerHTML = devolver_campeon();
+      }
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+          modal.style.display = "none";
+      }
+
+      </script>
+
+
 
     </section>
 

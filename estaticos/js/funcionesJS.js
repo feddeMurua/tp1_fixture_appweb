@@ -109,6 +109,29 @@ function calcular_resultados(list_partidos, dict_partidos_llave){
 
 }
 
+/* **************** CAMPEON **************** */
+
+function devolver_campeon(){
+
+  return(dict_partidos_llave_campeon["#final_1"]["nombre"]);
+
+}
+
+function campeon() {
+
+  //deshabilitar boton final
+  document.getElementById("btn-final").disabled = true;
+
+  calcular_resultados(list_partidos_llave_final, dict_partidos_llave_campeon);
+
+  document.getElementById("myImg").style.display = "block";
+
+}
+
+
+/* ***************************************** */
+
+
 /* **************** FINAL **************** */
 
 function final(json_final){
@@ -137,6 +160,8 @@ function final(json_final){
 
   armar_llaves(json_final, perdedor_semi_1 , perdedor_semi_2, "#tercer_puesto", "final");
 
+  document.getElementById("btn-campeon").disabled = false; //habilitar boton de campeon
+
 }
 
 function generar_final(){
@@ -148,10 +173,6 @@ function generar_final(){
 }
 
 function clasificacion_final() {
-
-  //deshabilitar boton semis
-  document.getElementById("btn-final").disabled = true;
-
 
   calcular_resultados(list_partidos_llave_semis, dict_partidos_llave_final);
 
@@ -472,7 +493,7 @@ function datos(json) {
 
 //fase de grupos
 function inicializar() {
-    
+
     //Variables globales llaves
     list_partidos_llave_8vos = [];
     dict_partidos_llave_4vos = {};
@@ -484,7 +505,7 @@ function inicializar() {
     dict_partidos_llave_final = {};
 
     list_partidos_llave_final = [];
-    dict_partidos_llave_final = {};
+    dict_partidos_llave_campeon = {};
 
     $.getJSON(
       "../server.php", // Server URL
