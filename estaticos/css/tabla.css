@@ -12,7 +12,7 @@ td .c{
 
 
 td {
-    border: 1px solid blue;
+    border: none;
     width: 140px;
     word-wrap: break-word;
 }
