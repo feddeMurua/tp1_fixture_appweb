@@ -22,6 +22,7 @@ function crear_clasificado(nombre_equipo) {
         };
 }
 
+
 //partidos de la llave
 function crear_partido_llave(nombre_llave) {
   return {nombre_llave:nombre_llave,
@@ -31,6 +32,7 @@ function crear_partido_llave(nombre_llave) {
           goles_eq_2:''
         };
 }
+
 
 //crea los cruces y asigna valores a los inputs
 function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave, fase) {
@@ -189,7 +191,6 @@ function semis(json_semis){
 }
 
 
-
 function clasificacion_semis() {
 
   //deshabilitar boton semis
@@ -215,7 +216,6 @@ function cuartos(json_4vos){
   document.getElementById("btn-semis").disabled = false; //habilitar boton de semis
 
 }
-
 
 
 function clasificacion_cuartos() {
@@ -261,6 +261,7 @@ function octavos(json_8vos){
 
 }
 
+
 function generar_fase(serie,funcion){
   $.getJSON(
 
@@ -287,6 +288,7 @@ function actualizar_tabla(goles_a_favor, goles_en_contra, equipo, dict_puntajes_
   }
 }
 
+
 //compara resultados de cada partido
 function calcular_puntos(json, grupo, fechas, nro_partidos, dict_puntajes_grupo){
 
@@ -305,6 +307,7 @@ function calcular_puntos(json, grupo, fechas, nro_partidos, dict_puntajes_grupo)
     }
 }
 
+
 //puntajes por cada equipo
 function crear_puntaje_equipo(nombre_equipo) {
   return {nombre:nombre_equipo,
@@ -314,6 +317,7 @@ function crear_puntaje_equipo(nombre_equipo) {
           dif_gol:0
         };
 }
+
 
 //funcion que dispara el boton 8vos
 function clasificacion_equipos() {
@@ -403,10 +407,20 @@ function clasificacion_equipos() {
   calcular_puntos(json, "grupoG", fechas, ["_#partido_1_gg","_#partido_2_gg","_#partido_3_gg"], dict_puntajes_grupoG);
   calcular_puntos(json, "grupoH", fechas, ["_#partido_1_gh","_#partido_2_gh","_#partido_3_gh"], dict_puntajes_grupoH);
 
+  console.log(dict_puntajes_grupoA);
+  console.log(dict_puntajes_grupoB);
+  console.log(dict_puntajes_grupoC);
+  console.log(dict_puntajes_grupoD);
+  console.log(dict_puntajes_grupoE);
+  console.log(dict_puntajes_grupoF);
+  console.log(dict_puntajes_grupoG);
+  console.log(dict_puntajes_grupoH);
+
   //generar_octavos();
   generar_fase("octavos",octavos);
 
 }
+
 
 //se crean los input para cada partido del grupo
 function recorrer_grupo(json, grupo, fechas, nro_partidos) {
@@ -420,7 +434,6 @@ function recorrer_grupo(json, grupo, fechas, nro_partidos) {
       var nombreEquipo2 = "'../imagenes/"+f.equipo_2+".png'";
       var equipo_1 = "<label>" + f.equipo_1 + "</label>" ;
       var equipo_2 = "<label>" + f.equipo_2 + "</label> " ;
-
 
       tabla = "<table class = 'a'; style='border:none;' cellspacing='0' cellpadding='0' > " ;
       cuerpo_tabla =" <tr > \
@@ -439,7 +452,6 @@ function recorrer_grupo(json, grupo, fechas, nro_partidos) {
 
       $(tabla).appendTo(nro_partidos[k]);
       $(cuerpo_tabla).appendTo(nro_partidos[k]);
-
 
    });
 
@@ -485,7 +497,3 @@ function inicializar() {
 
     generar_fase("grupos",datos);
 }
-
-// run AJAX query cuando carga la página.
-
-//window.onload=init;
