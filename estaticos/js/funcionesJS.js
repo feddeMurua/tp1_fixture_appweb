@@ -164,19 +164,14 @@ function final(json_final){
 
 }
 
-function generar_final(){
-  $.getJSON(
-    "../server.php", // Server URL
-    { fase: "final" }, // Dato que se envia al servidor
-    final
-  );
-}
 
 function clasificacion_final() {
 
   calcular_resultados(list_partidos_llave_semis, dict_partidos_llave_final);
 
-  generar_final();
+ //generar_final();
+  generar_fase("final",final);
+
 
 }
 
@@ -193,13 +188,7 @@ function semis(json_semis){
 
 }
 
-function generar_semis(){
-  $.getJSON(
-    "../server.php", // Server URL
-    { fase: "semis" }, // Dato que se envia al servidor
-    semis
-  );
-}
+
 
 function clasificacion_semis() {
 
@@ -208,7 +197,7 @@ function clasificacion_semis() {
 
   calcular_resultados(list_partidos_llave_4tos, dict_partidos_llave_semis);
 
-  generar_semis();
+  generar_fase("semis",semis);
 
 }
 
@@ -227,13 +216,7 @@ function cuartos(json_4vos){
 
 }
 
-function generar_cuartos(){
-  $.getJSON(
-    "../server.php", // Server URL
-    { fase: "cuartos" }, // Dato que se envia al servidor
-    cuartos
-  );
-}
+
 
 function clasificacion_cuartos() {
 
@@ -242,7 +225,8 @@ function clasificacion_cuartos() {
 
   calcular_resultados(list_partidos_llave_8vos, dict_partidos_llave_4vos);
 
-  generar_cuartos();
+  //generar_cuartos();
+  generar_fase("cuartos",cuartos);
 
 }
 
@@ -277,11 +261,12 @@ function octavos(json_8vos){
 
 }
 
-function generar_octavos(){
+function generar_fase(serie,funcion){
   $.getJSON(
+    
     "../server.php", // Server URL
-    { fase: "octavos" }, // Dato que se envia al servidor
-    octavos
+    { fase: serie}, // Dato que se envia al servidor
+    funcion
   );
 }
 
@@ -418,7 +403,8 @@ function clasificacion_equipos() {
   calcular_puntos(json, "grupoG", fechas, ["_#partido_1_gg","_#partido_2_gg","_#partido_3_gg"], dict_puntajes_grupoG);
   calcular_puntos(json, "grupoH", fechas, ["_#partido_1_gh","_#partido_2_gh","_#partido_3_gh"], dict_puntajes_grupoH);
 
-  generar_octavos();
+  //generar_octavos();
+  generar_fase("octavos",octavos);
 
 }
 
@@ -431,39 +417,29 @@ function recorrer_grupo(json, grupo, fechas, nro_partidos) {
     $.each(json[grupo][fechas[k]]["partidos"], function(i, f) {
 
       var nombreEquipo1 = "'../imagenes/"+f.equipo_1+".png'";
-      var string1 = ""+nombreEquipo1+"";
       var nombreEquipo2 = "'../imagenes/"+f.equipo_2+".png'";
-      var imgEquipo1 = "<img src="+string1+" width='38' height='30'/> ";
-      var imgEquipo2 = "<img src="+nombreEquipo2+" width='38' height='30'/> <br>";
       var equipo_1 = "<label>" + f.equipo_1 + "</label>" ;
-      var input_equipo_1 = "<input id='"+f.equipo_1+"_"+nro_partidos[k]+"' type='number' min='0' style='width:12%; text-align:center;'/>  "   ;
-      var input_equipo_2 = "<input id='"+f.equipo_2+"_"+nro_partidos[k]+"' type='number' min='0' style='width:12%; text-align:center;'/>";
       var equipo_2 = "<label>" + f.equipo_2 + "</label> " ;
-      var fecha = "<label>" + f.fecha + "</label>";
-      var estadio = "<label>" + f.estadio + "</label>";
-      var ciudad = "<label>" + f.ciudad + "</label> ";
-      var hora = "<label>" + f.hora + "</label> <br>";
-      var espacio = "<br>";
+     
 
-      $(imgEquipo1).appendTo(nro_partidos[k]);
-      $(nro_partidos[k]).append(" ");
-      $(equipo_1).appendTo(nro_partidos[k]);
-      $(nro_partidos[k]).append(" ");
-      $(input_equipo_1).appendTo(nro_partidos[k]);
-      $(nro_partidos[k]).append(" ");
-      $(input_equipo_2).appendTo(nro_partidos[k]);
-      $(nro_partidos[k]).append(" ");
-      $(equipo_2).appendTo(nro_partidos[k]);
-      $(nro_partidos[k]).append(" ");
-      $(imgEquipo2).appendTo(nro_partidos[k]);
-      $(fecha).appendTo(nro_partidos[k]);
-      $(nro_partidos[k]).append(" | ");
-      $(estadio).appendTo(nro_partidos[k]);
-      $(nro_partidos[k]).append(" | ");
-      $(ciudad).appendTo(nro_partidos[k]);
-      $(nro_partidos[k]).append(" | ");
-      $(hora).appendTo(nro_partidos[k]);
-      $(espacio).appendTo(nro_partidos[k]);
+      tabla = "<table style='border:none;' cellspacing='0' cellpadding='0' > " ;
+      cuerpo_tabla =" <tr > \
+                        <td style='text-align: right; padding-top:5;' colspan='3'> <img src="+nombreEquipo1+" width='38' height='30'/> <label id='"+f.equipo_1+"'>" + f.equipo_1 + "</label></td> \
+                        <td style='text-align: center; padding-top:5' colspan='2'> <input id='"+f.equipo_1+"_"+nro_partidos[k]+"' type='number' min='0' style='width:25%; text-align:center;'/> </td> \
+                        <td style='text-align: center; padding-top:5' colspan='2'> <input id='"+f.equipo_2+"_"+nro_partidos[k]+"' type='number' min='0' style='width:25%; text-align:center;'/> </td> \
+                        <td style='text-align: left; padding-top:5' colspan='4'><label id='"+f.equipo_2+"'>" + f.equipo_2 + "</label> <img src="+nombreEquipo2+" width='38' height='30'/> </td> \
+                        </tr>\
+                        <tr> \
+                          <td style='text-align: right;' colspan='1'>" + f.fecha + "</td>\
+                          <td style='text-align: center;' colspan='8'>" + f.estadio + "</td>\
+                          <td style='text-align: center;' colspan='2'>" + f.ciudad + "</td>\
+                          <td style='text-align: left;' colspan='1'>" + f.hora + "</td>\
+                        </tr>\
+                        </table>";
+
+      $(tabla).appendTo(nro_partidos[k]);
+      $(cuerpo_tabla).appendTo(nro_partidos[k]);
+      
 
    });
 
@@ -507,11 +483,7 @@ function inicializar() {
     list_partidos_llave_final = [];
     dict_partidos_llave_campeon = {};
 
-    $.getJSON(
-      "../server.php", // Server URL
-      { fase: "grupos" }, // Dato que se envia al servidor
-      datos
-    );
+    generar_fase("grupos",datos);
 }
 
 // run AJAX query cuando carga la página.
