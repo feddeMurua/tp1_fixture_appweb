@@ -45,18 +45,18 @@ function armar_llaves(json, ganador_grupo_1, ganador_grupo_2, llave, fase) {
      nombreEquipo1 = "'../imagenes/"+nombre_equipo1+".png'";
      nombreEquipo2 = "'../imagenes/"+nombre_equipo2+".png'";
 
-     tabla = "<table style='border:none;' cellspacing='0' cellpadding='0' > " ;
-     cuerpo_tabla =" <tr > \
-                        <td style='text-align: left; padding-top:5;' colspan='3'> <img src="+nombreEquipo1+" width='38' height='30'/> <label id='"+f.equipo_1+"'>" + nombre_equipo1 + "</label></td> \
-                        <td style='text-align: center; padding-top:5' colspan='2'> <input id='"+f.equipo_1+"_"+f.fecha+"' type='number' min='0' style='width:45%; text-align:center;'/> </td> \
-                        <td style='text-align: center; padding-top:5' colspan='2'> <input id='"+f.equipo_2+"_"+f.fecha+"' type='number' min='0' style='width:45%; text-align:center;'/> </td> \
-                        <td style='text-align: right; padding-top:5' colspan='4'><label id='"+f.equipo_2+"'>" + nombre_equipo2 + "</label> <img src="+nombreEquipo2+" width='38' height='30'/> </td> \
+     tabla = "<table class = 'a'; style='border:none;' cellspacing='0' cellpadding='0' > " ;
+     cuerpo_tabla =" <tr> \
+                        <td ><img src="+nombreEquipo1+" width='38' height='30'/> <label id='"+f.equipo_1+"'>" + nombre_equipo1 + "</label></td> \
+                        <td > <input id='"+f.equipo_1+"_"+f.fecha+"' type='number' min='0' style='width:45%; text-align:center;'/> </td> \
+                        <td > <input id='"+f.equipo_2+"_"+f.fecha+"' type='number' min='0' style='width:45%; text-align:center;'/> </td> \
+                        <td > <label id='"+f.equipo_2+"'>" + nombre_equipo2 + "</label> <img src="+nombreEquipo2+" width='38' height='30'/> </td> \
                         </tr>\
                         <tr> \
-                          <td style='text-align: left;' colspan='1'>" + f.fecha + "</td>\
-                          <td style='text-align: center;' colspan='8'>" + f.estadio + "</td>\
-                          <td style='text-align: left;' colspan='2'>" + f.ciudad + "</td>\
-                          <td style='text-align: left;' colspan='1'>" + f.hora + "</td>\
+                          <td >" + f.fecha + "</td>\
+                          <td >" + f.estadio + "</td>\
+                          <td >" + f.ciudad + "</td>\
+                          <td >" + f.hora + "</td>\
                         </tr>\
                         </table>";
 
@@ -422,18 +422,18 @@ function recorrer_grupo(json, grupo, fechas, nro_partidos) {
       var equipo_2 = "<label>" + f.equipo_2 + "</label> " ;
      
 
-      tabla = "<table style='border:none;' cellspacing='0' cellpadding='0' > " ;
+      tabla = "<table class = 'a'; style='border:none;' cellspacing='0' cellpadding='0' > " ;
       cuerpo_tabla =" <tr > \
-                        <td style='text-align: right; padding-top:5;' colspan='3'> <img src="+nombreEquipo1+" width='38' height='30'/> <label id='"+f.equipo_1+"'>" + f.equipo_1 + "</label></td> \
-                        <td style='text-align: center; padding-top:5' colspan='2'> <input id='"+f.equipo_1+"_"+nro_partidos[k]+"' type='number' min='0' style='width:25%; text-align:center;'/> </td> \
-                        <td style='text-align: center; padding-top:5' colspan='2'> <input id='"+f.equipo_2+"_"+nro_partidos[k]+"' type='number' min='0' style='width:25%; text-align:center;'/> </td> \
-                        <td style='text-align: left; padding-top:5' colspan='4'><label id='"+f.equipo_2+"'>" + f.equipo_2 + "</label> <img src="+nombreEquipo2+" width='38' height='30'/> </td> \
+                        <td > <img src="+nombreEquipo1+" width='38' height='30'/> <label id='"+f.equipo_1+"'>" + f.equipo_1 + "</label></td> \
+                        <td > <input id='"+f.equipo_1+"_"+nro_partidos[k]+"' type='number' min='0' style='width:45%; text-align:center;'/> </td> \
+                        <td > <input id='"+f.equipo_2+"_"+nro_partidos[k]+"' type='number' min='0' style='width:45%; text-align:center;'/> </td> \
+                        <td ><label id='"+f.equipo_2+"'>" + f.equipo_2 + "</label> <img src="+nombreEquipo2+" width='38' height='30'/> </td> \
                         </tr>\
                         <tr> \
-                          <td style='text-align: right;' colspan='1'>" + f.fecha + "</td>\
-                          <td style='text-align: center;' colspan='8'>" + f.estadio + "</td>\
-                          <td style='text-align: center;' colspan='2'>" + f.ciudad + "</td>\
-                          <td style='text-align: left;' colspan='1'>" + f.hora + "</td>\
+                          <td >" + f.fecha + "</td>\
+                          <td >" + f.estadio + "</td>\
+                          <td >" + f.ciudad + "</td>\
+                          <td >" + f.hora + "</td>\
                         </tr>\
                         </table>";
 

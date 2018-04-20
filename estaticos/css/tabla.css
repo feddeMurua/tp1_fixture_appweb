@@ -1,0 +1,18 @@
+table.a {
+    table-layout: fixed;
+    width: 300px;       
+}
+
+td .c{
+    border: 1px solid blue;
+    width: 30px;
+    word-wrap: break-word;
+}
+
+
+
+td {
+    border: 1px solid blue;
+    width: 140px;
+    word-wrap: break-word;
+}

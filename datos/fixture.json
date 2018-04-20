@@ -1,11 +1,11 @@
 {
   "grupoA": {
     "equipos":
-      [{"nombre": "Rusia"},{"nombre": "Arabia Saudita"},{"nombre": "Egipto"},{"nombre": "Uruguay"}],
+      [{"nombre": "Rusia"},{"nombre": "Arabia"},{"nombre": "Egipto"},{"nombre": "Uruguay"}],
     "fecha1":{
       "partidos":
         [
-          {"equipo_1": "Rusia","equipo_2": "Arabia Saudita","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"14/06", "hora":"12:00"},
+          {"equipo_1": "Rusia","equipo_2": "Arabia","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"14/06", "hora":"12:00"},
           {"equipo_1": "Egipto","equipo_2": "Uruguay","estadio":"Ekaterimburgo Arena", "ciudad":"Ekaterimburgo","fecha":"15/06", "hora":"09:00"}
         ]
     },
@@ -13,14 +13,14 @@
       "partidos":
         [
           {"equipo_1": "Rusia","equipo_2": "Egipto","estadio":"Zenit Arena", "ciudad":"San Petersburgo","fecha":"19/06", "hora":"15:00"},
-          {"equipo_1": "Uruguay","equipo_2": "Arabia Saudita","estadio":"Rostov Arena", "ciudad":"Rostov del Don","fecha":"20/06", "hora":"12:00"}
+          {"equipo_1": "Uruguay","equipo_2": "Arabia","estadio":"Rostov Arena", "ciudad":"Rostov del Don","fecha":"20/06", "hora":"12:00"}
         ]
     },
     "fecha3":{
       "partidos":
         [
           {"equipo_1": "Uruguay","equipo_2": "Rusia","estadio":"Samara Arena", "ciudad":"Samara","fecha":"25/06", "hora":"11:00"},
-          {"equipo_1": "Arabia Saudita","equipo_2": "Egipto","estadio":"Volgogrado Arena", "ciudad":"Volgogrado","fecha":"25/06", "hora":"11:00"}
+          {"equipo_1": "Arabia","equipo_2": "Egipto","estadio":"Volgogrado Arena", "ciudad":"Volgogrado","fecha":"25/06", "hora":"11:00"}
         ]
     }
   },
@@ -126,25 +126,25 @@
   },
   "grupoF": {
     "equipos":
-      [{"nombre": "Alemania"},{"nombre": "México"},{"nombre": "Suecia"},{"nombre": "República de Corea"}],
+      [{"nombre": "Alemania"},{"nombre": "México"},{"nombre": "Suecia"},{"nombre": "Corea"}],
     "fecha1":{
       "partidos":
         [
           {"equipo_1": "Alemania","equipo_2": "México","estadio":"Estadio Olímpico Luzhnikí", "ciudad":"Moscú","fecha":"17/06", "hora":"12:00"},
-          {"equipo_1": "Suecia","equipo_2": "República de Corea","estadio":"Estadio de Nizhni Nóvgorod", "ciudad":"Nizhni Nóvgorod","fecha":"18/06", "hora":"9:00"}
+          {"equipo_1": "Suecia","equipo_2": "Corea","estadio":"Estadio de Nizhni Nóvgorod", "ciudad":"Nizhni Nóvgorod","fecha":"18/06", "hora":"9:00"}
         ]
     },
     "fecha2":{
       "partidos":
         [
           {"equipo_1": "Alemania","equipo_2": "Suecia","estadio":"Estadio Fisht", "ciudad":"Sochi","fecha":"23/06", "hora":"12:00"},
-          {"equipo_1": "República de Corea","equipo_2": "México","estadio":"Rostov Arena", "ciudad":"Rostov del Don","fecha":"23/06", "hora":"15:00"}
+          {"equipo_1": "Corea","equipo_2": "México","estadio":"Rostov Arena", "ciudad":"Rostov del Don","fecha":"23/06", "hora":"15:00"}
         ]
     },
     "fecha3":{
       "partidos":
         [
-          {"equipo_1": "República de Corea","equipo_2": "Alemania","estadio":"Kazán Arena", "ciudad":"Kazán","fecha":"27/06", "hora":"11:00"},
+          {"equipo_1": "Corea","equipo_2": "Alemania","estadio":"Kazán Arena", "ciudad":"Kazán","fecha":"27/06", "hora":"11:00"},
           {"equipo_1": "México","equipo_2": "Suecia","estadio":"Ekaterimburgo Arena", "ciudad":"Ekaterimburgo","fecha":"27/06", "hora":"11:00"}
         ]
     }
